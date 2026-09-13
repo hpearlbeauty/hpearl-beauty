@@ -1,22 +1,22 @@
 # Image credits
 
-## hpearl_beauty photography (client work, studio-owned)
-`public/images/hero/hero-portrait-alt.jpg`, `public/images/transformations/*`, `public/images/studio/*`, `public/images/services/*`
-Only frames without third-party branding are used. Excluded frames are quarantined in `_source/excluded/`.
-
-## Owner catalogue photos (WhatsApp Business catalogue, studio-owned)
-`public/images/work/*` — 960×1280 client results supplied 13 Sep 2026. `microblading-detail-01.jpg` and `ombre-result-02.jpg` were rotated upright from the originals in `_source/catalogue/`.
-
-## Editorial stock (Pexels licence: free for commercial use, no attribution required)
-Used for atmosphere and education only, never presented as hpearl client results.
+All photography on the site is licensed editorial stock (Pexels licence: free for commercial use, no attribution required)
+until hpearl_beauty supplies studio photography. Nothing is presented as a client result; captions and alt text say "editorial".
 
 | File | Pexels ID | Used on |
 |---|---|---|
-| `public/images/editorial/portrait-profile.jpg` | 6762717 | Homepage hero portrait |
-| `public/images/editorial/close-up-eye.jpg` | 7480276 | Services hero |
-| `public/images/editorial/brows-eyes.jpg` | 13156200 | Services education |
-| `public/images/editorial/tint-brush.jpg` | 7446904 | Services education |
-| `public/images/academy/editorial-training.jpg` | 33607400 | Academy hero |
-| `public/images/academy/editorial-kit.jpg` | 5128115 | Academy kit |
+| `editorial/portrait-profile.jpg` | 6762717 | Homepage hero |
+| `editorial/portrait-front.jpg` | 7622713 | Combo Brows column, combo "finish" frame, services page |
+| `editorial/portrait-three-quarter.jpg` | 7622707 | Ombre column, ombre "finish" frame, services page |
+| `editorial/portrait-half.jpg` | 7971172 | Microblading column, microblading "finish" frame, services page |
+| `editorial/process-pen-mapping.jpg` | 8826403 | Combo "process" frame, services education |
+| `editorial/process-tint.jpg` | 7446904 | Ombre "process" frame, studio section |
+| `editorial/process-microblading.jpg` | 33607400 | Microblading "process" frame |
+| `editorial/process-brush.jpg` | 5178001 | (reserve) |
+| `editorial/close-up-eye.jpg` | 7480276 | Services hero |
+| `editorial/brows-eyes.jpg` | 13156200 | (reserve) |
+| `academy/editorial-training.jpg` | 33607400 | Academy hero |
+| `academy/editorial-kit.jpg` | 5128115 | Academy kit |
 
-Replace any of these with studio photography when supplied; paths are referenced from `src/content/*`.
+Studio-supplied frames are archived in `_source/` (catalogue photos in `_source/catalogue/`) and are not used on the site
+at the owner's request. Verified before/after pairs are uploaded through `/studio/content` and stored in Vercel Blob.

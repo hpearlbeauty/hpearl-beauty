@@ -33,7 +33,7 @@ export const home = {
     supporting: "Precision you can see. Every brow is mapped to your features, skin and desired finish.",
     /** Brief §4 required supporting heading. */
     figureHeading: "hpearl_beauty Before and After Transformations",
-    figureCaption: "Tailored mapping, softer fronts, refined tails.",
+    figureCaption: "Editorial imagery. Verified client before/after pairs will replace these once supplied by the studio.",
   },
   services: {
     eyebrow: "Signature services",
@@ -47,10 +47,11 @@ export const home = {
     /** Brief §4 required supporting heading. */
     heading: "Professional Eyebrow Studio in Ikeja",
     approach: "Mapping first, then technique. Every finish is shaped to the client's features.",
+    /** Editorial image (licensed stock); swap for studio photography when supplied. */
     image: {
-      src: "/images/studio/editorial-portrait.jpg",
-      alt: "hpearl_beauty client reclining in the studio chair after her brow session",
-      caption: "Studio client, Ikeja.",
+      src: "/images/editorial/process-tint.jpg",
+      alt: "A smiling client having her brows tinted with a fine brush, editorial image",
+      caption: "Editorial image. Studio photography to follow.",
     },
   },
   cta: {

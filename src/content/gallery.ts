@@ -9,34 +9,36 @@ export const galleryFilters: { id: "all" | GalleryCategory; label: string }[] = 
 
 /*
   Brief §4 / §13: no verified same-client before/after pairs have been supplied yet.
-  Until they are, each entry pairs two genuine hpearl_beauty frames from the studio
-  (mapping in progress on the left, finished result on the right) and says so in
-  the caption. `before` remains null so nothing is passed off as a true "before".
-  When verified pairs arrive, set `before` and the module switches automatically.
+  These are licensed editorial images (docs/image-credits.md) showing process on the
+  left and a finished brow on the right, and the caption says so. `before` stays null
+  so nothing is presented as a true "before". Verified pairs uploaded in /studio/content
+  replace these automatically.
 */
+const CAPTION = "Editorial imagery. Verified client before/after pairs will replace these once supplied by the studio.";
+
 export const transformations: TransformationPair[] = [
   {
     id: "combo-01",
     category: "combo-brows",
     before: null,
-    process: { src: "/images/transformations/combo-brows-01.jpg", alt: "Mapping in progress on a combo brows client", width: 335, height: 597 },
-    after: { src: "/images/work/combo-result-01.jpg", alt: "Finished combo brows on an hpearl_beauty client", width: 961, height: 1280 },
-    caption: "Left: mapping in progress at the studio. Right: finished result. Verified before/after pairs to follow.",
+    process: { src: "/images/editorial/process-pen-mapping.jpg", alt: "Brow mapping with a measuring pen, editorial image", width: 2000, height: 1333 },
+    after: { src: "/images/editorial/portrait-front.jpg", alt: "Editorial portrait with full, defined brows", width: 2000, height: 3000 },
+    caption: CAPTION,
   },
   {
     id: "ombre-01",
     category: "ombre-brows",
     before: null,
-    process: { src: "/images/transformations/ombre-brows-01.jpg", alt: "Mapping check on an ombre powder brows client", width: 335, height: 597 },
-    after: { src: "/images/work/ombre-result-01.jpg", alt: "Soft, evenly shaded ombre powder brows after treatment", width: 959, height: 1280 },
-    caption: "Left: mapping check. Right: healed, defined finish. Verified before/after pairs to follow.",
+    process: { src: "/images/editorial/process-tint.jpg", alt: "Brow tint being applied with a fine brush, editorial image", width: 2000, height: 1333 },
+    after: { src: "/images/editorial/portrait-three-quarter.jpg", alt: "Editorial portrait with a soft, shaded brow finish", width: 2000, height: 3000 },
+    caption: CAPTION,
   },
   {
     id: "micro-01",
     category: "microblading",
     before: null,
-    process: { src: "/images/transformations/ombre-brows-01.jpg", alt: "Brow mapping with the client in a headband", width: 335, height: 597 },
-    after: { src: "/images/work/microblading-detail-01.jpg", alt: "Hair-stroke detail on a microblading client", width: 1280, height: 1033 },
-    caption: "Left: mapping. Right: hair-stroke detail. Verified before/after pairs to follow.",
+    process: { src: "/images/editorial/process-microblading.jpg", alt: "Gloved hands microblading a brow, editorial image", width: 2000, height: 3556 },
+    after: { src: "/images/editorial/portrait-half.jpg", alt: "Editorial close-up of a naturally feathered brow", width: 2000, height: 1333 },
+    caption: CAPTION,
   },
 ];

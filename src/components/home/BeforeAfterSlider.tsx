@@ -16,8 +16,8 @@ import { useMediaQuery } from "@/lib/motion/useMediaQuery";
 export function BeforeAfterSlider({ pair, priority = false, className = "" }: { pair: TransformationPair; priority?: boolean; className?: string }) {
   const diptych = useMediaQuery("(min-width: 768px)");
   const left = pair.before ?? pair.process ?? null;
-  const leftLabel = pair.before ? "Before" : pair.process ? "Mapping" : "Before";
-  const rightLabel = pair.before ? "After" : "Result";
+  const leftLabel = pair.before ? "Before" : pair.process ? "Process" : "Before";
+  const rightLabel = pair.before ? "After" : "Finish";
   const [pos, setPos] = useState(50);
   const [settling, setSettling] = useState(false);
   const dragging = useRef(false);

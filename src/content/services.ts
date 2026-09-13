@@ -15,10 +15,10 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "combo-brows",
     image: {
-      src: "/images/work/combo-result-01.jpg",
-      alt: "hpearl_beauty client with freshly completed combo brows: crisp hair strokes at the front blending into soft shading",
-      width: 961,
-      height: 1280,
+      src: "/images/editorial/portrait-front.jpg",
+      alt: "Editorial portrait with full, softly defined brows",
+      width: 2000,
+      height: 3000,
     },
   },
   {
@@ -33,10 +33,10 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "ombre-brows",
     image: {
-      src: "/images/work/ombre-result-02.jpg",
-      alt: "hpearl_beauty client with soft, evenly shaded ombre powder brows after her session",
-      width: 1280,
-      height: 974,
+      src: "/images/editorial/portrait-three-quarter.jpg",
+      alt: "Editorial three-quarter portrait with a soft, shaded brow finish",
+      width: 2000,
+      height: 3000,
     },
   },
   {
@@ -51,10 +51,10 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "microblading",
     image: {
-      src: "/images/work/microblading-detail-01.jpg",
-      alt: "Close-up of fine, natural hair-stroke brows on an hpearl_beauty client immediately after microblading",
-      width: 1280,
-      height: 1033,
+      src: "/images/editorial/portrait-half.jpg",
+      alt: "Editorial close-up of one eye and a naturally feathered brow",
+      width: 2000,
+      height: 1333,
     },
   },
 ];
