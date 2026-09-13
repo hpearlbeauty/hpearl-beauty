@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { useBooking } from "./BookingContext";
 import { BookingBar } from "./BookingBar";
 
-/** Step 3 — appointment summary (bone card) + secure checkout (ink card), Figma. */
+/** Step 3 · appointment summary (bone card) + secure checkout (ink card), Figma. */
 export function DepositStep() {
   const { state, dispatch } = useBooking();
   const f = bookingFrames.deposit;
@@ -63,7 +63,7 @@ export function DepositStep() {
       <BookingBar step="deposit" label={f.stepLabel} />
       <div className="container-editorial pb-16 pt-12 lg:pb-24 lg:pt-14">
         <header>
-          <h1 className="t-h2 text-ink">{f.heading}</h1>
+          <h1 className="font-display text-[clamp(40px,4.4vw,64px)] leading-[1] text-ink">{f.heading}</h1>
           <p className="t-lead mt-3 text-taupe">{f.sub}</p>
         </header>
 
@@ -97,7 +97,7 @@ export function DepositStep() {
           <section className="lg:col-span-6" aria-labelledby="checkout-label">
             <p id="checkout-label" className="t-label text-clay">{f.checkoutLabel}</p>
             <form onSubmit={pay} className="mt-3 rounded-frame bg-ink p-7 text-ivory lg:p-8">
-              <h2 className="t-h3 text-ivory">{f.checkoutHeading}</h2>
+              <h2 className="font-display text-[clamp(30px,2.6vw,38px)] leading-[1.05] text-ivory">{f.checkoutHeading}</h2>
               <p className="t-body mt-3 text-ivory/75">{f.checkoutBody}</p>
 
               <fieldset className="mt-7 grid gap-4 sm:grid-cols-2">

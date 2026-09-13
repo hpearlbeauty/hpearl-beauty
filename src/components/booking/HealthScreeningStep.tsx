@@ -8,7 +8,7 @@ import { CheckboxCard } from "@/components/ui/CheckboxCard";
 import { useBooking } from "./BookingContext";
 
 /**
- * Step 1 — split layout: espresso reassurance panel left, legible form right.
+ * Step 1 · split layout: espresso reassurance panel left, legible form right.
  * The CTA visibly changes (180ms cross-fade) the moment any flag is ticked.
  */
 export function HealthScreeningStep() {
@@ -21,7 +21,7 @@ export function HealthScreeningStep() {
       <aside className="flex flex-col bg-espresso px-6 py-8 text-ivory lg:col-span-4 lg:px-12 lg:py-12" aria-labelledby="screening-panel-heading">
         <Link href="/" className="font-display text-2xl">hpearl_beauty</Link>
         <div className="mt-10 lg:mt-12">
-          <h2 id="screening-panel-heading" className="t-h2 text-ivory">{f.panel.heading}</h2>
+          <h2 id="screening-panel-heading" className="font-display text-[clamp(38px,3.4vw,52px)] leading-[1.02] text-ivory">{f.panel.heading}</h2>
           <p className="t-body mt-6 max-w-[36ch] text-ivory/75">{f.panel.body}</p>
           <p className="t-small mt-6 font-semibold text-champagne">{f.panel.note}</p>
         </div>
@@ -30,7 +30,7 @@ export function HealthScreeningStep() {
       <section className="bg-bone px-6 py-10 lg:col-span-8 lg:px-14 lg:py-14" aria-labelledby="screening-heading">
         <div className="mx-auto max-w-[640px]">
           <p className="t-label text-clay">{f.stepLabel}</p>
-          <h1 id="screening-heading" className="t-h2 mt-4 text-ink">{f.heading}</h1>
+          <h1 id="screening-heading" className="font-display mt-5 text-[clamp(40px,4vw,60px)] leading-[1] text-ink">{f.heading}</h1>
           <p className="t-body mt-5 text-taupe">{bookingCopy.screening.intro}</p>
 
           <fieldset className="mt-8 space-y-4">

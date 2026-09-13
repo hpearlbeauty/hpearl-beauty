@@ -9,7 +9,7 @@ const VALID: BookingStep[] = ["screening", "consultation_required", "datetime", 
 
 const Ctx = createContext<{ state: BookingState; dispatch: React.Dispatch<BookingAction> } | null>(null);
 
-/** Which steps a given state is allowed to show — used to clamp URL-driven navigation. */
+/** Which steps a given state is allowed to show · used to clamp URL-driven navigation. */
 function allowedStep(state: BookingState, wanted: BookingStep): BookingStep {
   if (wanted === "screening") return "screening";
   if (requiresConsultation(state.screening)) return "consultation_required";

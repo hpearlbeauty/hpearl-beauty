@@ -34,7 +34,7 @@ export function BookingConfirmation() {
   const start = new Date(`${state.date}T${state.slot}:00+01:00`);
   const end = new Date(start.getTime() + service.durationMinutes * 60000);
   const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-  const gcal = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`${service.name} — hpearl_beauty`)}&dates=${fmt(start)}/${fmt(end)}&location=${encodeURIComponent(studio.address)}&details=${encodeURIComponent(prepInstructions)}`;
+  const gcal = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`${service.name} · hpearl_beauty`)}&dates=${fmt(start)}/${fmt(end)}&location=${encodeURIComponent(studio.address)}&details=${encodeURIComponent(prepInstructions)}`;
 
   return (
     <div className="step-enter">
@@ -42,7 +42,7 @@ export function BookingConfirmation() {
       <section className="bg-ink pb-14 pt-10 text-ivory lg:pb-16 lg:pt-12" aria-labelledby="confirm-heading">
         <div className="container-editorial">
           <p className="t-label text-clay">{f.stepLabel}</p>
-          <h1 id="confirm-heading" className="t-h2 mt-5 text-ivory lg:text-[52px]">{f.heading}</h1>
+          <h1 id="confirm-heading" className="font-display mt-5 text-[clamp(40px,4.6vw,68px)] leading-[1] text-ivory">{f.heading}</h1>
           <p className="t-lead mt-3 text-ivory/80">{f.sub}</p>
         </div>
       </section>
@@ -73,7 +73,7 @@ export function BookingConfirmation() {
             <div>
               <dt className="t-small font-semibold text-clay">WhatsApp confirmation</dt>
               <dd className="t-body mt-1.5 text-ink" aria-live="polite">
-                {waStatus === "sent" ? "Sent to your WhatsApp number." : waStatus === "failed" ? "We couldn't send the message automatically — use the button below." : "Your WhatsApp confirmation will arrive shortly."}
+                {waStatus === "sent" ? "Sent to your WhatsApp number." : waStatus === "failed" ? "We couldn't send the message automatically · use the button below." : "Your WhatsApp confirmation will arrive shortly."}
               </dd>
             </div>
           </dl>

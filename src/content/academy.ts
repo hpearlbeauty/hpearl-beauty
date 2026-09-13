@@ -10,7 +10,7 @@ export const academy = {
   headline: "Learn Brow Artistry. Build a Business Around Your Skill.",
   headlineUnconfirmed: "Turn Your Passion for Beauty Into a Six-Figure Business.",
   subcopy:
-    "Hands-on mastery under direct guidance from Olayemi Aluko — from colour theory and facial mapping to live model performance.",
+    "Hands-on mastery under direct guidance from Olayemi Aluko, from colour theory and facial mapping to live model performance.",
   cta: "Reserve Your Academy Seat",
   ctaNote: "Deposit required",
   curriculum: [
@@ -36,6 +36,9 @@ export const academy = {
   /** Final kit contents TBD (brief §10). Concept items listed for layout only; label as "may include". */
   kitItemsConcept: ["Custom mapping strings", "PMU machines", "Practice latex sheets"],
   kitItemsConfirmed: null as string[] | null,
+  /** Editorial imagery (licensed stock, not hpearl client work). Swap for studio photography when supplied. */
+  heroImage: { src: "/images/academy/editorial-training.jpg", alt: "Gloved hands applying pigment during a brow procedure, editorial training image" },
+  kitImage: { src: "/images/academy/editorial-kit.jpg", alt: "Permanent-makeup tools laid out on a white surface", caption: "Editorial image. Final kit photography to follow." },
   tuitionNGN: null as number | null,
   depositNGN: null as number | null,
 } as const;

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 /*
   Scroll reveal (handoff §6 "Scroll Reveals").
   Elements opt in with `data-reveal` (or `data-reveal="image"`).
-  Once revealed they stay revealed — never re-animate on re-entry.
+  Once revealed they stay revealed · never re-animate on re-entry.
   Pure CSS + IntersectionObserver; no animation library.
 */
 export function useReveal(root?: React.RefObject<HTMLElement | null>) {

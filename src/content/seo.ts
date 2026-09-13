@@ -1,7 +1,7 @@
-/* Brief §4, §5, §10, §14 — keywords used naturally, never stuffed. */
+/* Brief §4, §5, §10, §14 · keywords used naturally, never stuffed. */
 export const seo = {
   home: {
-    title: "Best Microblading in Ikeja — Semi-Permanent Brows by hpearl_beauty",
+    title: "Best Microblading in Ikeja · Semi-Permanent Brows by hpearl_beauty",
     description:
       "Luxury semi-permanent brows in Lagos. Combo brows, ombre powder brows and microblading, precision-mapped by Olayemi Aluko at hpearl_beauty, Ikeja.",
     primaryKeyword: "Best microblading in Ikeja",
@@ -12,7 +12,7 @@ export const seo = {
     ],
   },
   services: {
-    title: "Combo Brows Lagos Price, Ombre & Microblading — hpearl_beauty Services",
+    title: "Combo Brows Lagos Price, Ombre & Microblading · hpearl_beauty Services",
     description:
       "Compare combo brows, ombre powder brows and microblading at hpearl_beauty, Ikeja. Durations, skin-type guidance, custom brow mapping and aftercare.",
     primaryKeyword: "Combo brows Lagos price",
@@ -23,7 +23,7 @@ export const seo = {
     ],
   },
   academy: {
-    title: "Microblading Training Lagos — hpearl_beauty Academy",
+    title: "Microblading Training Lagos · hpearl_beauty Academy",
     description:
       "Professional PMU masterclass in Lagos. Learn brow artistry from Olayemi Aluko with hands-on practice, live models and a student kit.",
     primaryKeyword: "Microblading training Lagos",

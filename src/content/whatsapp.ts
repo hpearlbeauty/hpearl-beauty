@@ -1,13 +1,13 @@
 import { prepInstructions, studio } from "./studio";
 
-/* Brief §9 — automated WhatsApp scripts, verbatim. */
+/* Brief §9 · automated WhatsApp scripts, verbatim. */
 export interface ConfirmationVars {
   clientName: string;
   serviceName: string;
   dateTimeLabel: string;
 }
 
-/** Script A — sent after screening passes and 50% deposit succeeds. */
+/** Script A · sent after screening passes and 50% deposit succeeds. */
 export function bookingConfirmationMessage(v: ConfirmationVars): string {
   return [
     `Hello *${v.clientName}*, your brow transformation is locked in! ✨`,
@@ -23,7 +23,7 @@ export function bookingConfirmationMessage(v: ConfirmationVars): string {
 }
 
 /**
- * Script B — sent exactly 28 days after the initial appointment.
+ * Script B · sent exactly 28 days after the initial appointment.
  * Brief §9 claim note: "last up to 2 years" is unverified. It is kept behind
  * `includeLongevityClaim` (default false) until hpearl_beauty approves it.
  */

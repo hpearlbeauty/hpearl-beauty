@@ -1,4 +1,4 @@
-/* Brief §6 — screening, deposit and confirmation copy */
+/* Brief §6 · screening, deposit and confirmation copy */
 export const screeningQuestions = [
   { id: "pregnant_nursing", label: "Pregnant or nursing" },
   { id: "keloids", label: "History of Keloids or hypertrophic scarring" },

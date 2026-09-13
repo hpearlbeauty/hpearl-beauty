@@ -1,6 +1,6 @@
 "use client";
 
-/** Filter chip — ink fill when active, otherwise quiet on bone. 44px min target. */
+/** Filter chip · ink fill when active, otherwise quiet on bone. 44px min target. */
 export function Chip({ active, children, onClick, id, controls }: { active: boolean; children: React.ReactNode; onClick: () => void; id?: string; controls?: string }) {
   return (
     <button

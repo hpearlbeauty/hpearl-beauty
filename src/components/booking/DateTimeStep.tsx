@@ -24,7 +24,7 @@ function shiftMonth(key: string, by: number) {
   return monthKey(new Date(y, m - 1 + by, 1));
 }
 
-/** Step 2 — service selector left, available-date tiles + time chips right (Figma). */
+/** Step 2 · service selector left, available-date tiles + time chips right (Figma). */
 export function DateTimeStep() {
   const { state, dispatch } = useBooking();
   const f = bookingFrames.datetime;
@@ -76,12 +76,12 @@ export function DateTimeStep() {
       <BookingBar step="datetime" label={f.stepLabel} />
       <div className="container-editorial pb-16 pt-12 lg:pb-24 lg:pt-14">
         <header>
-          <h1 className="t-h2 text-ink">{f.heading}</h1>
+          <h1 className="font-display text-[clamp(40px,4.4vw,64px)] leading-[1] text-ink">{f.heading}</h1>
           <p className="t-lead mt-3 text-taupe">{f.sub}</p>
         </header>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-12 lg:gap-12">
-          {/* 1 — service */}
+          {/* 1 · service */}
           <section className="lg:col-span-7" aria-labelledby="pick-service">
             <p id="pick-service" className="t-label text-clay"><span aria-hidden="true">1 </span>{f.selectService}</p>
             <div role="radiogroup" aria-labelledby="pick-service" className="mt-4 space-y-3 rounded-frame bg-bone p-4 lg:p-7">
@@ -107,7 +107,7 @@ export function DateTimeStep() {
             </div>
           </section>
 
-          {/* 2 — date + time */}
+          {/* 2 · date + time */}
           <section className="lg:col-span-5" aria-labelledby="pick-date">
             <p id="pick-date" className="t-label text-clay"><span aria-hidden="true">2 </span>{f.pickDate}</p>
             <div className="mt-4 rounded-frame bg-bone p-5 lg:p-7">

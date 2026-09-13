@@ -44,7 +44,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     <>
       <header className={`site-header anim-header fixed inset-x-0 top-0 z-40 border-b ${surface}`}>
         <div className="container-editorial flex h-[68px] items-center justify-between lg:h-[80px]">
-          <Link href="/" className="font-display text-[22px] tracking-tight lg:text-2xl" aria-label="hpearl_beauty home">
+          <Link href="/" className="font-display text-[26px] font-medium tracking-tight lg:text-[28px]" aria-label="hpearl_beauty home">
             hpearl_beauty
           </Link>
 
@@ -56,13 +56,13 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`text-[15px] font-medium transition-colors duration-[160ms] hover:opacity-100 ${active ? "opacity-100" : "opacity-80"}`}
+                  className={`t-label transition-opacity duration-[160ms] hover:opacity-100 ${active ? "opacity-100" : "opacity-70"}`}
                 >
                   {item.label}
                 </Link>
               );
             })}
-            <Button href={navigation.cta.href} variant="champagne" className="ml-2 h-11 px-6">
+            <Button href={navigation.cta.href} variant="champagne" className="ml-2 h-11 px-6 t-label">
               {navigation.cta.label}
             </Button>
           </nav>
@@ -83,7 +83,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
         </div>
       </header>
 
-      {/* Mobile menu — full-height espresso sheet, opacity + slight translateY */}
+      {/* Mobile menu · full-height espresso sheet, opacity + slight translateY */}
       <div id={menuId} className="menu-sheet fixed inset-0 z-30 bg-espresso text-ivory lg:hidden" data-open={open} aria-hidden={!open}>
         <nav aria-label="Mobile" className="container-editorial flex h-full flex-col justify-center gap-2 pt-[68px]">
           {navigation.primary.map((item, i) => (
@@ -93,7 +93,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
               href={item.href}
               tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
-              className="menu-link font-display flex items-baseline justify-between border-b border-border-dark py-5 text-[34px] leading-none"
+              className="menu-link font-display flex items-baseline justify-between border-b border-border-dark py-5 text-[44px] leading-none"
               style={{ "--i": i } as React.CSSProperties}
             >
               {item.label}

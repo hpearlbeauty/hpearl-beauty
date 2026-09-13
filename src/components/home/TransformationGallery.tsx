@@ -3,7 +3,7 @@ import { useId, useMemo, useState } from "react";
 import { home } from "@/content/home";
 import { transformations } from "@/content/gallery";
 import { EditorialSectionHeader } from "@/components/ui/EditorialSectionHeader";
-import { Reveal, RevealScope } from "@/components/ui/Reveal";
+import { FadeUp } from "@/components/motion/FadeUp";
 import { GalleryFilter, type FilterId } from "./GalleryFilter";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
 
@@ -11,34 +11,32 @@ export function TransformationGallery() {
   const [filter, setFilter] = useState<FilterId>("all");
   const panelId = useId();
   const pair = useMemo(() => transformations.find((t) => filter === "all" || t.category === filter) ?? null, [filter]);
-  const { transformations: copy } = home;
+  const c = home.transformations;
 
   return (
-    <RevealScope>
-      <section id="transformations" className="bg-ivory section-y" aria-labelledby="transformations-heading">
-        <div className="container-editorial">
-          <EditorialSectionHeader id="transformations-heading" title={copy.title} supporting={copy.supporting} />
+    <section id="transformations" className="relative overflow-hidden bg-ivory pb-[var(--section-y)] pt-[var(--section-y)] lg:pt-44" aria-labelledby="transformations-heading">
+      <span className="ghost left-[-2%] top-[36%] hidden text-ink lg:block" aria-hidden="true">{c.ghost}</span>
+      <div className="container-editorial relative">
+        <EditorialSectionHeader index="01" eyebrow={c.eyebrow} id="transformations-heading" title={c.title} supporting={c.supporting} />
 
-          <Reveal className="mt-12 lg:mt-16">
-            <GalleryFilter value={filter} onChange={setFilter} panelId={panelId} />
-          </Reveal>
+        <FadeUp className="mt-12 lg:mt-16">
+          <GalleryFilter value={filter} onChange={setFilter} panelId={panelId} />
+        </FadeUp>
 
-          <figure id={panelId} role="tabpanel" aria-labelledby={`filter-${filter}`} className="mt-8">
-            <Reveal variant="image">
-              {pair ? (
-                <BeforeAfterSlider key={pair.id} pair={pair} />
-              ) : (
-                <div className="grid aspect-[960/330] place-items-center rounded-frame bg-sand t-small text-taupe">No transformations in this category yet.</div>
-              )}
-            </Reveal>
-            <figcaption className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h3 className="t-small font-semibold text-clay">{copy.figureHeading}</h3>
-              <span className="t-small text-taupe" aria-hidden="true">•</span>
-              <span className="t-small text-taupe">{copy.figureCaption}</span>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-    </RevealScope>
+        <figure id={panelId} role="tabpanel" aria-labelledby={`filter-${filter}`} className="mt-8">
+          <FadeUp y={40}>
+            {pair ? (
+              <BeforeAfterSlider key={pair.id} pair={pair} />
+            ) : (
+              <div className="grid aspect-[960/330] place-items-center rounded-frame bg-sand t-small text-taupe">No transformations in this category yet.</div>
+            )}
+          </FadeUp>
+          <figcaption className="mt-6 grid gap-2 md:grid-cols-12">
+            <h3 className="t-label text-clay md:col-span-5">{c.figureHeading}</h3>
+            <p className="t-small text-taupe md:col-span-5 md:col-start-8">{pair?.caption ?? c.figureCaption}</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
   );
 }

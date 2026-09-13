@@ -1,6 +1,6 @@
 import type { Service } from "./types";
 
-/* Brief §5 — copy verbatim. Prices are TBD; never infer. */
+/* Brief §5 · copy verbatim. Prices are TBD; never infer. */
 export const services: Service[] = [
   {
     id: "combo-brows",
@@ -16,7 +16,7 @@ export const services: Service[] = [
     galleryCategory: "combo-brows",
     image: {
       src: "/images/transformations/combo-brows-01.jpg",
-      alt: "hpearl_beauty client after a combo brows session, showing defined nano-stroke fronts with soft powder shading",
+      alt: "Brow mapping in progress at hpearl_beauty: gloved hand checking symmetry on a client with defined combo brows",
       width: 335,
       height: 597,
     },
@@ -34,7 +34,7 @@ export const services: Service[] = [
     galleryCategory: "ombre-brows",
     image: {
       src: "/images/transformations/ombre-brows-01.jpg",
-      alt: "hpearl_beauty client resting after an ombre powder brows treatment with a soft gradient finish",
+      alt: "hpearl_beauty client in a headband during brow mapping, soft powder-shaded brows freshly defined",
       width: 335,
       height: 597,
     },
@@ -52,14 +52,14 @@ export const services: Service[] = [
     galleryCategory: "microblading",
     image: {
       src: "/images/transformations/microblading-01.jpg",
-      alt: "hpearl_beauty client smiling after microblading, with natural hair-like brow strokes",
+      alt: "Close-up of an hpearl_beauty client with crisp, natural hair-stroke brows",
       width: 335,
       height: 597,
     },
   },
 ];
 
-/** Additional pricing — all TBD (brief §5). Only display when confirmed. */
+/** Additional pricing · all TBD (brief §5). Only display when confirmed. */
 export const additionalPricing = {
   touchUpNGN: null as number | null,
 } as const;

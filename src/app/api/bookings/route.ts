@@ -8,7 +8,7 @@ import { getBookingStore } from "@/lib/adapters/bookings";
 import { makeReference } from "@/lib/adapters/payments";
 
 /**
- * POST /api/bookings — creates a pending booking + slot hold.
+ * POST /api/bookings · creates a pending booking + slot hold.
  * The screening gate is re-checked server-side so it can't be bypassed client-side.
  */
 export async function POST(req: Request) {

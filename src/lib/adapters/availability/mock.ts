@@ -2,7 +2,7 @@ import type { AvailabilityProvider, Slot } from "./types";
 
 /*
   Deterministic in-memory availability so the flow can be built and tested
-  independently of the real calendar backend (studio hours are TBD — brief §17 #17).
+  independently of the real calendar backend (studio hours are TBD · brief §17 #17).
   Replace via AVAILABILITY_PROVIDER=api in lib/adapters/availability/index.ts.
 */
 const BASE_SLOTS = ["10:00", "12:30", "15:00"];

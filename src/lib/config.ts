@@ -6,7 +6,7 @@ export const siteConfig = {
   name: "hpearl_beauty",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   description:
-    "Precision semi-permanent brow artistry in Ikeja, Lagos — combo brows, ombre powder brows and microblading.",
+    "Precision semi-permanent brow artistry in Ikeja, Lagos · combo brows, ombre powder brows and microblading.",
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "",
   paymentProvider: (process.env.NEXT_PUBLIC_PAYMENT_PROVIDER ?? "paystack") as "paystack" | "flutterwave",
   timezone: "Africa/Lagos",

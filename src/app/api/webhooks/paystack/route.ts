@@ -3,7 +3,7 @@ import { getBookingStore } from "@/lib/adapters/bookings";
 import { getPaymentProvider } from "@/lib/adapters/payments";
 import { onBookingConfirmed } from "@/lib/booking/events";
 
-/** paystack webhook — signature-verified; idempotent on booking status. */
+/** paystack webhook · signature-verified; idempotent on booking status. */
 export async function POST(req: Request) {
   const raw = await req.text();
   const provider = getPaymentProvider("paystack");

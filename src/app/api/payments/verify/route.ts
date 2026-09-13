@@ -3,7 +3,7 @@ import { getBookingStore } from "@/lib/adapters/bookings";
 import { getPaymentProvider } from "@/lib/adapters/payments";
 import { onBookingConfirmed } from "@/lib/booking/events";
 
-/** GET /api/payments/verify?ref=… — client-side callback path; webhook is the authoritative path. */
+/** GET /api/payments/verify?ref=… · client-side callback path; webhook is the authoritative path. */
 export async function GET(req: Request) {
   const ref = new URL(req.url).searchParams.get("ref");
   const store = getBookingStore();

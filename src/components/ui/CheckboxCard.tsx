@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Screening checkbox — full-width card, 48px+ target, visible checked state (fill 140ms).
+ * Screening checkbox · full-width card, 48px+ target, visible checked state (fill 140ms).
  * Native input kept for keyboard + AT; label wraps the whole card.
  */
 export function CheckboxCard({ id, label, checked, onChange }: { id: string; label: string; checked: boolean; onChange: (next: boolean) => void }) {

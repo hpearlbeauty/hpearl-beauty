@@ -1,20 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/config";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 
-/* Font loading strategy: self-hosted via next/font, swap display, subset latin. */
-const playfair = Playfair_Display({
+/*
+  Type system: Cormorant Garamond for display (high-contrast editorial serif),
+  Instrument Sans for UI and body. Self-hosted via next/font, swap display.
+*/
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
-  variable: "--font-playfair",
+  variable: "--font-display-src",
   display: "swap",
 });
 
-const inter = Inter({
+const instrument = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  variable: "--font-sans-src",
   display: "swap",
 });
 
@@ -34,8 +39,14 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-NG" className={`${playfair.variable} ${inter.variable}`}>
-      <body>{children}</body>
+    <html lang="en-NG" className={`${cormorant.variable} ${instrument.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Marks JS availability so text-reveal targets can be hidden pre-animation without breaking no-JS rendering. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
+      <body>
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }

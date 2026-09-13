@@ -1,5 +1,5 @@
 /*
-  Content model — mirrors docs/product-content-brief.md §19.
+  Content model · mirrors docs/product-content-brief.md §19.
   Unknown business facts are `null` (rendered as labelled TBD), never guessed.
 */
 export type GalleryCategory = "combo-brows" | "ombre-brows" | "microblading";
@@ -23,7 +23,7 @@ export interface Service {
   audience: string;
   /** Short skin-fit label for compact cards (Figma), derived from `audience`. */
   audienceShort: string;
-  /** Price in NGN. `null` = TBD (brief §5) — never infer. */
+  /** Price in NGN. `null` = TBD (brief §5) · never infer. */
   priceNGN: number | null;
   galleryCategory: GalleryCategory;
   image: ImageAsset;
@@ -34,6 +34,8 @@ export interface TransformationPair {
   category: GalleryCategory;
   /** Both must be verified hpearl-owned matching images. `null` = placeholder. */
   before: ImageAsset | null;
+  /** Genuine in-progress frame shown on the left while a true `before` is unavailable. */
+  process?: ImageAsset;
   after: ImageAsset | null;
   caption?: string;
 }

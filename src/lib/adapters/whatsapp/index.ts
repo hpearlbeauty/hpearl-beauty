@@ -10,7 +10,7 @@ export function getWhatsAppProvider(): WhatsAppProvider {
   switch (id) {
     case "meta":
       return metaWhatsApp;
-    // case "twilio": / case "termii": — add when the provider is chosen (brief §17 #14)
+    // case "twilio": / case "termii": · add when the provider is chosen (brief §17 #14)
     case "none":
     default:
       return noopWhatsApp;

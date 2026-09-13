@@ -1,4 +1,4 @@
-/** Naira formatting. `null` renders a labelled TBD — prices are never inferred. */
+/** Naira formatting. `null` renders a labelled TBD · prices are never inferred. */
 export const TBD_LABEL = "Price on request";
 
 export function formatNGN(amount: number | null, opts: { tbdLabel?: string } = {}): string {

@@ -13,7 +13,7 @@ export const initialBookingState: BookingState = {
   paymentStatus: "idle",
 };
 
-/** Pure reducer — the visual flow is driven entirely by this so backends can hydrate it later. */
+/** Pure reducer · the visual flow is driven entirely by this so backends can hydrate it later. */
 export function bookingReducer(state: BookingState, action: BookingAction): BookingState {
   switch (action.type) {
     case "TOGGLE_SCREENING": {

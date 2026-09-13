@@ -5,7 +5,7 @@ import { flutterwave } from "./flutterwave";
 
 export type * from "./types";
 
-/** Brief §6: final provider TBD — selected by NEXT_PUBLIC_PAYMENT_PROVIDER. */
+/** Brief §6: final provider TBD · selected by NEXT_PUBLIC_PAYMENT_PROVIDER. */
 export function getPaymentProvider(id?: PaymentProviderId): PaymentProvider {
   const provider = id ?? (process.env.NEXT_PUBLIC_PAYMENT_PROVIDER as PaymentProviderId | undefined) ?? "paystack";
   switch (provider) {

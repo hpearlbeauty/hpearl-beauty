@@ -22,7 +22,7 @@ export const flutterwave: PaymentProvider = {
         currency: input.currency,
         redirect_url: input.callbackUrl,
         customer: { email: input.email, name: input.customerName, phonenumber: input.phone ?? "" },
-        customizations: { title: "hpearl_beauty — 50% Deposit" },
+        customizations: { title: "hpearl_beauty · 50% Deposit" },
         meta: input.metadata,
       }),
       cache: "no-store",

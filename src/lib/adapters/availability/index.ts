@@ -10,7 +10,7 @@ export function getAvailabilityProvider(): AvailabilityProvider {
   switch (provider) {
     case "mock":
       return mockAvailability;
-    // case "api": return apiAvailability; — wire the real calendar backend here
+    // case "api": return apiAvailability; · wire the real calendar backend here
     default:
       throw new Error(`Unknown AVAILABILITY_PROVIDER: ${provider}`);
   }

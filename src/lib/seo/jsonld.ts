@@ -3,7 +3,7 @@ import { services } from "@/content/services";
 import { academy } from "@/content/academy";
 import { siteConfig } from "@/lib/config";
 
-/** LocalBusiness — no invented ratings, hours or price ranges (brief §14). */
+/** LocalBusiness · no invented ratings, hours or price ranges (brief §14). */
 export function localBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -46,7 +46,7 @@ export function academyCourseJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Course",
-    name: "hpearl_beauty Academy — Brow Artistry Masterclass",
+    name: "hpearl_beauty Academy · Brow Artistry Masterclass",
     description: academy.subcopy,
     provider: { "@type": "Organization", name: brand.name, sameAs: siteConfig.url },
     hasCourseInstance: { "@type": "CourseInstance", courseMode: "onsite", location: { "@type": "Place", address: studio.address } },
