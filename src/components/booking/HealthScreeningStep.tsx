@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { Logo } from "@/components/ui/Logo";
 import { bookingCopy, bookingFrames, screeningQuestions } from "@/content/booking";
 import { requiresConsultation } from "@/lib/booking/screening";
 import { whatsappLink } from "@/lib/config";
@@ -19,7 +19,7 @@ export function HealthScreeningStep() {
   return (
     <div className="step-enter grid min-h-dvh lg:grid-cols-12">
       <aside className="flex flex-col bg-espresso px-6 py-8 text-ivory lg:col-span-4 lg:px-12 lg:py-12" aria-labelledby="screening-panel-heading">
-        <Link href="/" className="font-display text-2xl">hpearl_beauty</Link>
+        <Logo tone="light" />
         <div className="mt-10 lg:mt-12">
           <h2 id="screening-panel-heading" className="font-display text-[clamp(38px,3.4vw,52px)] leading-[1.02] text-ivory">{f.panel.heading}</h2>
           <p className="t-body mt-6 max-w-[36ch] text-ivory/75">{f.panel.body}</p>

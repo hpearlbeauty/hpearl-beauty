@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { navigation } from "@/content/studio";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 
 /**
  * Site header. `overlay` = transparent over the dark homepage hero, becoming
@@ -21,7 +22,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     if (!overlay) return;
     const sentinel = document.getElementById("hero-end");
     if (!sentinel) return;
-    const io = new IntersectionObserver(([e]) => setPastHero(e.boundingClientRect.top < 0), { rootMargin: "-80px 0px 0px 0px" });
+    const io = new IntersectionObserver(([e]) => setPastHero(e.boundingClientRect.top < 80), { rootMargin: "-80px 0px 0px 0px", threshold: [0, 1] });
     io.observe(sentinel);
     return () => io.disconnect();
   }, [overlay]);
@@ -44,9 +45,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     <>
       <header className={`site-header anim-header fixed inset-x-0 top-0 z-40 border-b ${surface}`}>
         <div className="container-editorial flex h-[68px] items-center justify-between lg:h-[80px]">
-          <Link href="/" className="font-display text-[26px] font-medium tracking-tight lg:text-[28px]" aria-label="hpearl_beauty home">
-            hpearl_beauty
-          </Link>
+          <Logo tone={dark ? "light" : "dark"} />
 
           <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
             {navigation.primary.map((item) => {
@@ -85,7 +84,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
 
       {/* Mobile menu · full-height espresso sheet, opacity + slight translateY */}
       <div id={menuId} className="menu-sheet fixed inset-0 z-30 bg-espresso text-ivory lg:hidden" data-open={open} aria-hidden={!open}>
-        <nav aria-label="Mobile" className="container-editorial flex h-full flex-col justify-center gap-2 pt-[68px]">
+        <nav aria-label="Mobile" className="container-editorial flex h-full flex-col justify-center gap-2 pt-[68px] pb-[env(safe-area-inset-bottom)]">
           {navigation.primary.map((item, i) => (
             <Link
               key={item.href}

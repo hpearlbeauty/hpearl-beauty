@@ -14,11 +14,11 @@ export function HeroEditorial() {
   const { hero } = home;
   return (
     <section className="grain relative overflow-hidden bg-ink text-ivory" aria-labelledby="hero-heading">
-      <span className="ghost right-[-4%] top-[8%] hidden lg:block" aria-hidden="true">{hero.ghost}</span>
+      <span className="ghost right-[-3%] top-[26%] hidden md:block lg:top-[22%]" aria-hidden="true">{hero.ghost}</span>
 
-      <div className="container-editorial relative grid gap-10 pb-16 pt-[calc(68px+24px)] lg:grid-cols-12 lg:gap-8 lg:pb-0 lg:pt-[calc(80px+40px)]">
+      <div className="container-editorial relative grid gap-10 pb-16 pt-[92px] lg:grid-cols-12 lg:gap-8 lg:pb-0 lg:pt-[120px]">
         {/* Side label (desktop) */}
-        <div className="pointer-events-none absolute left-[calc(var(--gutter)-40px)] top-[calc(80px+56px)] hidden xl:block">
+        <div className="pointer-events-none absolute left-[calc(var(--gutter)_-_40px)] top-[136px] hidden xl:block">
           <p className="side-label t-label text-ivory/45">{hero.sideLabel}</p>
         </div>
 

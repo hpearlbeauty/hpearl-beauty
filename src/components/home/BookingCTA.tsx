@@ -8,7 +8,7 @@ export function BookingCTA() {
   const c = home.cta;
   return (
     <section className="relative overflow-hidden bg-ivory section-y" aria-labelledby="cta-heading">
-      <span className="ghost left-[30%] top-[-10%] hidden text-ink lg:block" aria-hidden="true">{c.ghost}</span>
+      <span className="ghost right-[-2%] top-[8%] hidden text-ink md:block" aria-hidden="true">{c.ghost}</span>
       <div className="container-editorial relative">
         <div className="hairline pt-6">
           <FadeUp as="p" className="t-label text-clay">{c.eyebrow}</FadeUp>

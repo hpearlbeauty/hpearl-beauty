@@ -15,7 +15,7 @@ export function TransformationGallery() {
 
   return (
     <section id="transformations" className="relative overflow-hidden bg-ivory pb-[var(--section-y)] pt-[var(--section-y)] lg:pt-44" aria-labelledby="transformations-heading">
-      <span className="ghost left-[-2%] top-[36%] hidden text-ink lg:block" aria-hidden="true">{c.ghost}</span>
+      <span className="ghost right-[-2%] top-[6%] hidden text-ink md:block" aria-hidden="true">{c.ghost}</span>
       <div className="container-editorial relative">
         <EditorialSectionHeader index="01" eyebrow={c.eyebrow} id="transformations-heading" title={c.title} supporting={c.supporting} />
 

@@ -14,7 +14,7 @@ export function StickyBookBar({ label = "Book Your Consultation" }: { label?: st
   }, []);
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-30 border-t border-border-dark bg-ink/95 px-4 py-2.5 backdrop-blur-sm transition-[transform,opacity] duration-[250ms] ease-micro lg:hidden ${show ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+      className={`fixed inset-x-0 bottom-0 z-30 border-t border-border-dark bg-ink/95 px-4 pt-2.5 pb-[calc(10px+env(safe-area-inset-bottom))] backdrop-blur-sm transition-[transform,opacity] duration-[250ms] ease-micro lg:hidden ${show ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
       aria-hidden={!show}
     >
       <div className="flex items-center justify-between gap-4">

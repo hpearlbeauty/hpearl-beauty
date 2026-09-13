@@ -15,7 +15,7 @@ export function FounderStory() {
   const f = home.founder;
   return (
     <section className="grain relative overflow-hidden bg-espresso text-ivory section-y" aria-labelledby="founder-heading">
-      <span className="ghost bottom-[-6%] right-[-3%] hidden lg:block" aria-hidden="true">{f.ghost}</span>
+      <span className="ghost right-[-2%] top-[4%] hidden md:block" aria-hidden="true">{f.ghost}</span>
       <div className="container-editorial relative">
         <EditorialSectionHeader tone="dark" index="03" eyebrow={f.eyebrow} id="founder-heading" title={f.heading} />
 

@@ -2,12 +2,13 @@ import Link from "next/link";
 import { brand, navigation, studio } from "@/content/studio";
 import { siteConfig, whatsappLink } from "@/lib/config";
 import { Placeholder } from "@/components/ui/Placeholder";
+import { BrowMark } from "@/components/ui/Logo";
 
 export function Footer() {
   return (
     <footer className="grain bg-ink text-ivory">
       <div className="container-editorial pb-10 pt-20 lg:pt-28">
-        <p className="font-display text-[clamp(56px,10vw,160px)] leading-[0.9] tracking-tight text-ivory">{brand.wordmark}</p>
+        <div className="flex items-end gap-4 lg:gap-8"><BrowMark className="mb-2 h-10 w-auto shrink-0 lg:mb-5 lg:h-20" /><p className="font-display text-[clamp(56px,10vw,160px)] leading-[0.9] tracking-tight text-ivory">{brand.wordmark}</p></div>
         <div className="mt-14 grid gap-12 border-t border-border-dark pt-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <p className="t-label text-champagne">Studio</p>
