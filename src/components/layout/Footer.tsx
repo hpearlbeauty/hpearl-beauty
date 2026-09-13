@@ -28,7 +28,7 @@ export function Footer() {
             <p className="t-label text-champagne">Contact</p>
             <div className="mt-4 space-y-3">
               {siteConfig.whatsappNumber ? (
-                <a href={whatsappLink("Hello hpearl_beauty, I'd like to ask about booking.")} className="t-body inline-block text-ivory underline-offset-[6px] hover:underline" target="_blank" rel="noopener">Message us on WhatsApp</a>
+                <a href={whatsappLink("Hello hpearl_beauty, I'd like to ask about booking.")} className="t-body inline-block text-ivory underline-offset-[6px] hover:underline" target="_blank" rel="noopener">WhatsApp {studio.whatsappDisplay}</a>
               ) : (
                 <Placeholder tone="dark" label="WhatsApp number pending" />
               )}

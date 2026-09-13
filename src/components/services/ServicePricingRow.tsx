@@ -28,7 +28,7 @@ export function ServicePricingRow({ service, index }: { service: Service; index:
       </div>
       <div className="lg:col-span-4 lg:col-start-9">
         <div className="relative aspect-[4/5] overflow-hidden rounded-frame bg-sand">
-          <Image src={service.image.src} alt={service.image.alt} fill sizes="(min-width: 1024px) 30vw, 100vw" className="object-cover" />
+          <Image src={service.image.src} alt={service.image.alt} fill sizes="(min-width: 1024px) 30vw, 100vw" className="object-cover object-[50%_22%]" />
         </div>
       </div>
     </FadeUp>

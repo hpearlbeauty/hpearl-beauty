@@ -25,6 +25,8 @@ export const studio = {
   timezoneLabel: "Ikeja, Lagos · WAT",
   /** Opening days/hours: TBD (brief §17 #17). */
   hours: null as string | null,
+  /** Studio WhatsApp, as shown to clients. The dialable value lives in NEXT_PUBLIC_WHATSAPP_NUMBER. */
+  whatsappDisplay: "+234 703 084 7377",
   /** Social handles: TBD (brief §17 #19). */
   instagram: null as string | null,
 } as const;

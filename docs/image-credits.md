@@ -4,6 +4,9 @@
 `public/images/hero/hero-portrait-alt.jpg`, `public/images/transformations/*`, `public/images/studio/*`, `public/images/services/*`
 Only frames without third-party branding are used. Excluded frames are quarantined in `_source/excluded/`.
 
+## Owner catalogue photos (WhatsApp Business catalogue, studio-owned)
+`public/images/work/*` — 960×1280 client results supplied 13 Sep 2026. `microblading-detail-01.jpg` and `ombre-result-02.jpg` were rotated upright from the originals in `_source/catalogue/`.
+
 ## Editorial stock (Pexels licence: free for commercial use, no attribution required)
 Used for atmosphere and education only, never presented as hpearl client results.
 

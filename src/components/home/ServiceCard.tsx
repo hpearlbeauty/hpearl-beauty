@@ -15,7 +15,7 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
     <article className="service-col flex h-full flex-col" data-reveal="" style={{ "--reveal-delay": `${index * 60}ms` } as React.CSSProperties}>
       <Link href={`/services#${service.id}`} tabIndex={-1} aria-hidden="true" className="frame block">
         <Parallax amount={4} scale={1.08} className="aspect-[4/3] w-full rounded-frame bg-sand md:aspect-[4/5]">
-          <Image src={service.image.src} alt="" fill sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw" className="object-cover" />
+          <Image src={service.image.src} alt="" fill sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw" className="object-cover object-[50%_22%]" />
         </Parallax>
       </Link>
 

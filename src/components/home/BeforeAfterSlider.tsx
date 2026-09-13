@@ -136,7 +136,7 @@ export function BeforeAfterSlider({ pair, priority = false, className = "" }: { 
 
 function Panel({ side, width, img, priority, transition }: { side: "before" | "after"; width: string; img: TransformationPair["after"]; priority: boolean; transition: string }) {
   const anchor = side === "before" ? "left-0" : "right-0";
-  const objectPos = side === "before" ? "object-[30%_25%]" : "object-[70%_20%]";
+  const objectPos = side === "before" ? "object-[30%_25%]" : "object-[50%_28%]";
   return (
     <div className={`absolute inset-y-0 ${anchor} overflow-hidden rounded-frame bg-sand`} style={{ width, transition }} aria-hidden={side === "before"}>
       {img ? (

@@ -20,7 +20,7 @@ export const transformations: TransformationPair[] = [
     category: "combo-brows",
     before: null,
     process: { src: "/images/transformations/combo-brows-01.jpg", alt: "Mapping in progress on a combo brows client", width: 335, height: 597 },
-    after: { src: "/images/transformations/after-editorial.jpg", alt: "Finished combo brows on an hpearl_beauty client, in profile", width: 335, height: 597 },
+    after: { src: "/images/work/combo-result-01.jpg", alt: "Finished combo brows on an hpearl_beauty client", width: 961, height: 1280 },
     caption: "Left: mapping in progress at the studio. Right: finished result. Verified before/after pairs to follow.",
   },
   {
@@ -28,7 +28,7 @@ export const transformations: TransformationPair[] = [
     category: "ombre-brows",
     before: null,
     process: { src: "/images/transformations/ombre-brows-01.jpg", alt: "Mapping check on an ombre powder brows client", width: 335, height: 597 },
-    after: { src: "/images/transformations/microblading-01.jpg", alt: "Close-up of soft, defined brows after treatment", width: 387, height: 516 },
+    after: { src: "/images/work/ombre-result-01.jpg", alt: "Soft, evenly shaded ombre powder brows after treatment", width: 959, height: 1280 },
     caption: "Left: mapping check. Right: healed, defined finish. Verified before/after pairs to follow.",
   },
   {
@@ -36,7 +36,7 @@ export const transformations: TransformationPair[] = [
     category: "microblading",
     before: null,
     process: { src: "/images/transformations/ombre-brows-01.jpg", alt: "Brow mapping with the client in a headband", width: 335, height: 597 },
-    after: { src: "/images/transformations/microblading-01.jpg", alt: "Hair-stroke detail on a microblading client", width: 387, height: 516 },
+    after: { src: "/images/work/microblading-detail-01.jpg", alt: "Hair-stroke detail on a microblading client", width: 1280, height: 1033 },
     caption: "Left: mapping. Right: hair-stroke detail. Verified before/after pairs to follow.",
   },
 ];

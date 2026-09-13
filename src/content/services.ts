@@ -15,10 +15,10 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "combo-brows",
     image: {
-      src: "/images/transformations/combo-brows-01.jpg",
-      alt: "Brow mapping in progress at hpearl_beauty: gloved hand checking symmetry on a client with defined combo brows",
-      width: 335,
-      height: 597,
+      src: "/images/work/combo-result-01.jpg",
+      alt: "hpearl_beauty client with freshly completed combo brows: crisp hair strokes at the front blending into soft shading",
+      width: 961,
+      height: 1280,
     },
   },
   {
@@ -33,10 +33,10 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "ombre-brows",
     image: {
-      src: "/images/transformations/ombre-brows-01.jpg",
-      alt: "hpearl_beauty client in a headband during brow mapping, soft powder-shaded brows freshly defined",
-      width: 335,
-      height: 597,
+      src: "/images/work/ombre-result-02.jpg",
+      alt: "hpearl_beauty client with soft, evenly shaded ombre powder brows after her session",
+      width: 1280,
+      height: 974,
     },
   },
   {
@@ -51,10 +51,10 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "microblading",
     image: {
-      src: "/images/transformations/microblading-01.jpg",
-      alt: "Close-up of an hpearl_beauty client with crisp, natural hair-stroke brows",
-      width: 335,
-      height: 597,
+      src: "/images/work/microblading-detail-01.jpg",
+      alt: "Close-up of fine, natural hair-stroke brows on an hpearl_beauty client immediately after microblading",
+      width: 1280,
+      height: 1033,
     },
   },
 ];
