@@ -26,9 +26,6 @@
   --ease-exit: var(--ease-exit);
   --ease-micro: var(--ease-micro);
 
-  --breakpoint-sm: 390px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
   --breakpoint-xl: 1440px;
 }
 
@@ -84,7 +81,7 @@
   .section-y { padding-block: var(--section-y); }
 
   /* Type scale (§2) */
-  .t-hero   { font-family: var(--font-display); font-size: clamp(38px, 5vw, 72px); line-height: 1.02; letter-spacing: -0.015em; }
+  .t-hero   { font-family: var(--font-display); font-size: clamp(40px, 4.4vw, 64px); line-height: 1.04; letter-spacing: -0.015em; }
   .t-h2     { font-family: var(--font-display); font-size: clamp(30px, 3.3vw, 46px); line-height: 1.1; }
   .t-h3     { font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 30px); line-height: 1.2; }
   .t-lead   { font-size: clamp(16px, 1.25vw, 18px); line-height: 1.6; }
@@ -117,5 +114,60 @@
   }
   @media (prefers-reduced-motion: reduce) {
     [data-reveal], [data-reveal="image"] { opacity: 1; transform: none; clip-path: none; transition: none; }
+  }
+}
+
+/* ---- Page-load sequence (handoff §6 "Page Load") — hero only, nothing else animates on load ---- */
+@layer components {
+  @keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
+  @keyframes rise-in { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: none } }
+  @keyframes rise-in-10 { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+  @keyframes line-in { from { transform: translateY(110%) } to { transform: none } }
+  @keyframes media-settle { from { opacity: 0; transform: scale(1.025) } to { opacity: 1; transform: none } }
+
+  .anim-header { animation: fade-in var(--dur-header-load) var(--ease-enter) both; }
+  .anim-eyebrow { animation: rise-in 600ms var(--ease-enter) 150ms both; }
+  .hero-line { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .hero-line > span { display: block; animation: line-in 900ms var(--ease-enter) both; animation-delay: calc(260ms + var(--i, 0) * 75ms); }
+  .anim-after-headline { animation: rise-in-10 650ms var(--ease-enter) both; animation-delay: calc(640ms + var(--i, 0) * 80ms); }
+  .anim-media { animation: media-settle var(--dur-image) var(--ease-enter) 200ms both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-header, .anim-eyebrow, .hero-line > span, .anim-after-headline, .anim-media { animation: none; }
+  }
+
+  /* Mobile menu (handoff §6 "Navigation") */
+  .menu-sheet { transition: opacity 280ms var(--ease-enter), transform 280ms var(--ease-enter), visibility 0s linear 280ms; opacity: 0; transform: translateY(8px); visibility: hidden; }
+  .menu-sheet[data-open="true"] { opacity: 1; transform: none; visibility: visible; transition-delay: 0s; }
+  .menu-link { opacity: 0; transform: translateY(10px); transition: opacity 400ms var(--ease-enter), transform 400ms var(--ease-enter); transition-delay: calc(80ms + var(--i, 0) * 45ms); }
+  .menu-sheet[data-open="true"] .menu-link { opacity: 1; transform: none; }
+  .menu-icon { transition: transform 240ms var(--ease-micro); }
+  .menu-icon[data-open="true"] { transform: rotate(45deg); }
+
+  /* Header surface change after hero (250ms) */
+  .site-header { transition: background-color var(--dur-header) var(--ease-micro), border-color var(--dur-header) var(--ease-micro), color var(--dur-header) var(--ease-micro), backdrop-filter var(--dur-header) var(--ease-micro); }
+
+  /* Service card hover (handoff §6 "Service Cards") */
+  .service-card { transition: border-color 300ms var(--ease-micro), transform 300ms var(--ease-micro); }
+  .service-card img { transition: transform 500ms var(--ease-micro); }
+  .service-card .card-arrow { transition: transform 300ms var(--ease-micro); }
+  @media (hover: hover) {
+    .service-card:hover { border-color: var(--color-champagne); transform: translateY(-2px); }
+    .service-card:hover img { transform: scale(1.025); }
+    .service-card:hover .card-arrow { transform: translateX(4px); }
+  }
+
+  /* Booking step swap (handoff §6 "Booking Progress") */
+  @keyframes step-in { from { opacity: 0; transform: translateX(16px) } to { opacity: 1; transform: none } }
+  .step-enter { animation: step-in var(--dur-step) var(--ease-enter) both; }
+  @keyframes cross-fade { from { opacity: 0 } to { opacity: 1 } }
+  .cta-swap { animation: cross-fade 180ms var(--ease-micro) both; }
+  @keyframes month-in { from { opacity: 0; transform: translateX(var(--dir, 12px)) } to { opacity: 1; transform: none } }
+  .month-enter { animation: month-in 250ms var(--ease-enter) both; }
+  @keyframes check-draw { to { stroke-dashoffset: 0 } }
+  .check-stroke { stroke-dasharray: 24; stroke-dashoffset: 24; animation: check-draw 700ms var(--ease-enter) 200ms forwards; }
+  @media (prefers-reduced-motion: reduce) {
+    .step-enter, .cta-swap, .month-enter { animation: none; }
+    .check-stroke { stroke-dashoffset: 0; animation: none; }
   }
 }

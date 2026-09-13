@@ -11,6 +11,7 @@ export const services: Service[] = [
     durationMinutes: 150,
     durationLabel: "2.5 Hours",
     audience: "All skin types, especially clients looking to fix sparse areas or asymmetrical brows.",
+    audienceShort: "All skin types",
     priceNGN: null,
     galleryCategory: "combo-brows",
     image: {
@@ -28,6 +29,7 @@ export const services: Service[] = [
     durationMinutes: 120,
     durationLabel: "2 Hours",
     audience: "Oily skin types or clients who love a daily \"freshly filled\" makeup appearance.",
+    audienceShort: "Ideal for oily skin",
     priceNGN: null,
     galleryCategory: "ombre-brows",
     image: {
@@ -45,6 +47,7 @@ export const services: Service[] = [
     durationMinutes: 120,
     durationLabel: "2 Hours",
     audience: "Normal-to-dry skin profiles looking for subtle, hyper-natural enhancements.",
+    audienceShort: "Normal to dry skin",
     priceNGN: null,
     galleryCategory: "microblading",
     image: {

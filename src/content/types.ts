@@ -21,6 +21,8 @@ export interface Service {
   durationMinutes: number;
   durationLabel: string;
   audience: string;
+  /** Short skin-fit label for compact cards (Figma), derived from `audience`. */
+  audienceShort: string;
   /** Price in NGN. `null` = TBD (brief §5) — never infer. */
   priceNGN: number | null;
   galleryCategory: GalleryCategory;

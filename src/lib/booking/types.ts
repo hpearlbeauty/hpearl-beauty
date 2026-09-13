@@ -16,6 +16,8 @@ export interface Customer {
 export interface BookingState {
   step: BookingStep;
   screening: ScreeningQuestionId[];
+  /** True once the user has submitted the screening with no flags. */
+  screeningPassed: boolean;
   serviceId: ServiceId | null;
   /** YYYY-MM-DD in Africa/Lagos */
   date: string | null;

@@ -4,6 +4,7 @@ import { requiresConsultation } from "./screening";
 export const initialBookingState: BookingState = {
   step: "screening",
   screening: [],
+  screeningPassed: false,
   serviceId: null,
   date: null,
   slot: null,
@@ -20,10 +21,12 @@ export function bookingReducer(state: BookingState, action: BookingAction): Book
       const screening = has ? state.screening.filter((x) => x !== action.id) : [...state.screening, action.id];
       // Leaving consultation_required when the last flag is cleared keeps the CTA honest.
       const step = state.step === "consultation_required" && !requiresConsultation(screening) ? "screening" : state.step;
-      return { ...state, screening, step };
+      return { ...state, screening, screeningPassed: false, step };
     }
     case "SUBMIT_SCREENING":
-      return { ...state, step: requiresConsultation(state.screening) ? "consultation_required" : "datetime" };
+      return requiresConsultation(state.screening)
+        ? { ...state, screeningPassed: false, step: "consultation_required" }
+        : { ...state, screeningPassed: true, step: "datetime" };
     case "SELECT_SERVICE":
       // Changing service invalidates any chosen slot (durations differ).
       return { ...state, serviceId: action.serviceId, date: null, slot: null };
@@ -45,6 +48,7 @@ export function bookingReducer(state: BookingState, action: BookingAction): Book
     case "GO_TO": {
       // Guard: never allow skipping forward past the screening gate.
       if (action.step !== "screening" && requiresConsultation(state.screening)) return { ...state, step: "consultation_required" };
+      if (action.step !== "screening" && action.step !== "consultation_required" && !state.screeningPassed) return { ...state, step: "screening" };
       if (action.step === "deposit" && !(state.serviceId && state.date && state.slot)) return { ...state, step: "datetime" };
       if (action.step === "confirmation" && state.paymentStatus !== "success") return state;
       return { ...state, step: action.step };

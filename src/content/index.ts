@@ -7,3 +7,5 @@ export * from "./academy";
 export * from "./booking";
 export * from "./seo";
 export * from "./whatsapp";
+export * from "./home";
+export * from "./servicesPage";
