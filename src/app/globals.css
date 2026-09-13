@@ -56,6 +56,8 @@
   /* Text-reveal targets hide only when JS is present; GSAP restores visibility. */
   html.js [data-text-reveal] { visibility: hidden; }
   .tr-line { display: block; }
+  /* SplitText line masks clip at the line box; give serif descenders (g, y, p) room without changing rhythm. */
+  .tr-line-mask { padding-bottom: 0.16em; margin-bottom: -0.16em; padding-inline: 0.06em; margin-inline: -0.06em; }
   @media (prefers-reduced-motion: reduce) {
     html.js [data-text-reveal] { visibility: visible; }
     *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
