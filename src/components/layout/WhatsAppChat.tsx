@@ -43,7 +43,7 @@ export function WhatsAppChat() {
       rel="noopener"
       aria-label="Chat with hpearl_beauty on WhatsApp"
       title={siteConfig.whatsappNumber ? "Chat on WhatsApp" : "WhatsApp number pending (set NEXT_PUBLIC_WHATSAPP_NUMBER)"}
-      className={`fixed right-4 z-30 flex h-12 items-center gap-2.5 rounded-full border border-champagne/40 bg-ink/95 pl-3.5 pr-4 text-ivory shadow-[0_8px_30px_rgba(23,18,15,0.25)] backdrop-blur-sm transition-[transform,opacity] duration-[250ms] ease-micro hover:border-champagne lg:right-8 ${
+      className={`fixed right-4 z-30 hidden h-12 items-center gap-2.5 md:flex rounded-full border border-champagne/40 bg-ink/95 pl-3.5 pr-4 text-ivory shadow-[0_8px_30px_rgba(23,18,15,0.25)] backdrop-blur-sm transition-[transform,opacity] duration-[250ms] ease-micro hover:border-champagne lg:right-8 ${
         show ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0 pointer-events-none"
       } bottom-[calc(72px+env(safe-area-inset-bottom))] lg:bottom-8`}
       tabIndex={show ? 0 : -1}

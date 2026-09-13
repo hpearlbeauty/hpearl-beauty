@@ -15,7 +15,10 @@ export const home = {
     subcopy:
       "Experience the art of precision brow mapping by Olayemi Aluko in Ikeja, Lagos. Designed to look refined, natural and unmistakably yours.",
     primaryCta: "Book Your Consultation & Procedure",
+    /** Phone-width label for the same CTA. */
+    primaryCtaShort: "Book Consultation",
     secondaryCta: "Explore Our Work",
+    secondaryCtaShort: "Our Work",
     /** Editorial portrait (licensed stock, see docs/image-credits.md). Swap for studio photography when supplied. */
     image: {
       src: "/images/editorial/portrait-profile.jpg",

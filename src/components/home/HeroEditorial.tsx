@@ -16,7 +16,7 @@ export function HeroEditorial() {
     <section className="grain relative overflow-hidden bg-ink text-ivory" aria-labelledby="hero-heading">
       <span className="ghost right-[-3%] top-[26%] hidden md:block lg:top-[22%]" aria-hidden="true">{hero.ghost}</span>
 
-      <div className="container-editorial relative grid gap-10 pb-16 pt-[92px] lg:grid-cols-12 lg:gap-8 lg:pb-0 lg:pt-[120px]">
+      <div className="container-editorial relative grid gap-8 pb-12 pt-[92px] md:gap-10 md:pb-16 lg:grid-cols-12 lg:gap-8 lg:pb-0 lg:pt-[120px]">
         {/* Side label (desktop) */}
         <div className="pointer-events-none absolute left-[calc(var(--gutter)_-_40px)] top-[136px] hidden xl:block">
           <p className="side-label t-label text-ivory/45">{hero.sideLabel}</p>
@@ -28,14 +28,18 @@ export function HeroEditorial() {
           <TextReveal as="h1" id="hero-heading" immediate delay={260} stagger={0.09} className="t-hero mt-8 text-ivory">
             {hero.headlineLead} <em className="font-normal text-champagne">{hero.headlineAccent}</em> {hero.headlineTail}
           </TextReveal>
-          <div className="mt-10 grid gap-8 md:grid-cols-12 md:items-end">
+          <div className="mt-8 grid gap-6 md:mt-10 md:gap-8 md:grid-cols-12 md:items-end">
             <p className="anim-rise t-lead max-w-[42ch] text-ivory/75 md:col-span-7" style={{ "--i": 5 } as React.CSSProperties}>
               {hero.subcopy}
             </p>
-            <div className="anim-rise flex flex-col gap-5 md:col-span-5 md:items-end" style={{ "--i": 6 } as React.CSSProperties}>
-              <Button href="/book" variant="champagne" size="lg" className="w-full md:w-auto">{hero.primaryCta}</Button>
-              <Button href="#transformations" variant="link-light" className="t-small font-medium tracking-wide">
-                {hero.secondaryCta} <ArrowRight />
+            <div className="anim-rise flex items-center justify-between gap-4 md:col-span-5 md:flex-col md:items-end md:gap-5" style={{ "--i": 6 } as React.CSSProperties}>
+              <Button href="/book" variant="champagne" size="lg" className="flex-1 whitespace-nowrap md:flex-none md:w-auto">
+                <span className="md:hidden">{hero.primaryCtaShort}</span>
+                <span className="hidden md:inline">{hero.primaryCta}</span>
+              </Button>
+              <Button href="#transformations" variant="link-light" className="t-small shrink-0 font-medium tracking-wide">
+                <span className="md:hidden">{hero.secondaryCtaShort}</span>
+                <span className="hidden md:inline">{hero.secondaryCta}</span> <ArrowRight />
               </Button>
             </div>
           </div>
