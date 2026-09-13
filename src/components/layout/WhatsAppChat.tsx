@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { siteConfig, whatsappLink } from "@/lib/config";
 import { getService } from "@/content/services";
+import { usePastHero } from "@/lib/motion/usePastHero";
 
 /**
  * Floating WhatsApp entry point. No third-party widget: a wa.me deep link whose
@@ -13,21 +14,13 @@ import { getService } from "@/content/services";
 export function WhatsAppChat() {
   const pathname = usePathname();
   const [hash, setHash] = useState("");
-  const [show, setShow] = useState(false);
+  const show = usePastHero(0);
 
   useEffect(() => {
     const onHash = () => setHash(window.location.hash.replace("#", ""));
     onHash();
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
-  }, [pathname]);
-
-  useEffect(() => {
-    const sentinel = document.getElementById("hero-end");
-    if (!sentinel) return;
-    const io = new IntersectionObserver(([e]) => setShow(e.boundingClientRect.top < 0));
-    io.observe(sentinel);
-    return () => io.disconnect();
   }, [pathname]);
 
   if (pathname.startsWith("/book")) return null;

@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { navigation } from "@/content/studio";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
+import { usePastHero } from "@/lib/motion/usePastHero";
 
 /**
  * Site header. `overlay` = transparent over the dark homepage hero, becoming
@@ -12,20 +13,12 @@ import { Logo } from "@/components/ui/Logo";
  */
 export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const pathname = usePathname();
-  const [pastHero, setPastHero] = useState(!overlay);
+  const scrolledPast = usePastHero(80);
+  const pastHero = !overlay || scrolledPast;
   const [open, setOpen] = useState(false);
   const menuId = useId();
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    if (!overlay) return;
-    const sentinel = document.getElementById("hero-end");
-    if (!sentinel) return;
-    const io = new IntersectionObserver(([e]) => setPastHero(e.boundingClientRect.top < 80), { rootMargin: "-80px 0px 0px 0px", threshold: [0, 1] });
-    io.observe(sentinel);
-    return () => io.disconnect();
-  }, [overlay]);
 
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";

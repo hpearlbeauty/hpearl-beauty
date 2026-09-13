@@ -1,17 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { usePastHero } from "@/lib/motion/usePastHero";
 
 /** Mobile-only slim bottom bar, revealed after the hero (handoff §7). */
 export function StickyBookBar({ label = "Book Your Consultation" }: { label?: string }) {
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    const sentinel = document.getElementById("hero-end");
-    if (!sentinel) return;
-    const io = new IntersectionObserver(([e]) => setShow(e.boundingClientRect.top < 0));
-    io.observe(sentinel);
-    return () => io.disconnect();
-  }, []);
+  const show = usePastHero(0);
   return (
     <div
       className={`fixed inset-x-0 bottom-0 z-30 border-t border-border-dark bg-ink/95 px-4 pt-2.5 pb-[calc(10px+env(safe-area-inset-bottom))] backdrop-blur-sm transition-[transform,opacity] duration-[250ms] ease-micro lg:hidden ${show ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
