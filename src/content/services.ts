@@ -51,8 +51,8 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "microblading",
     image: {
-      src: "/images/editorial/portrait-half.jpg",
-      alt: "Editorial close-up of one eye and a naturally feathered brow",
+      src: "/images/editorial/brows-eyes.jpg",
+      alt: "Editorial close-up of a pair of full, naturally feathered brows",
       width: 2000,
       height: 1333,
     },
