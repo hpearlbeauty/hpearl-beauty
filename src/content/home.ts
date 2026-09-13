@@ -54,8 +54,8 @@ export const home = {
     approach: "Mapping first, then technique. Every finish is shaped to the client's features.",
     /** Editorial image (licensed stock); swap for studio photography when supplied. */
     image: {
-      src: "/images/editorial/studio-artist.jpg",
-      alt: "Brow artist working on a client in profile, editorial image",
+      src: "/images/editorial/studio-artist-2.jpg",
+      alt: "A makeup artist working on a client under a ring light in Jos, Nigeria, editorial image",
       caption: "Editorial image. Studio photography to follow.",
     },
   },

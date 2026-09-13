@@ -35,10 +35,10 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "ombre-brows",
     image: {
-      src: "/images/editorial/ombre-finish.jpg",
-      alt: "Soft, powder-defined brows being finished with a brow pencil, editorial image",
+      src: "/images/editorial/ombre-finish-2.jpg",
+      alt: "Client smiling as she brushes through softly shaded brows, editorial image",
       width: 2000,
-      height: 3000,
+      height: 1333,
     },
   },
   {
@@ -54,8 +54,8 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "microblading",
     image: {
-      src: "/images/editorial/microblading-mapping.jpg",
-      alt: "Hair-stroke mapping on a brow with a PMU pen, editorial image",
+      src: "/images/editorial/microblading-mapping-2.jpg",
+      alt: "Fine tool at the brow line of a client lying back with eyes closed, editorial image",
       width: 2000,
       height: 1333,
     },

@@ -8,7 +8,7 @@ export const servicesPage = {
   /** Editorial imagery (licensed stock, docs/image-credits.md). */
   heroImage: { src: "/images/editorial/close-up-eye.jpg", alt: "Editorial close-up of an eye and brow in warm directional light" },
   educationImages: [
-    { src: "/images/editorial/microblading-mapping.jpg", alt: "Hair-stroke mapping on a brow with a PMU pen, editorial image" },
+    { src: "/images/editorial/microblading-mapping-2.jpg", alt: "Fine tool at the brow line of a client lying back, editorial image" },
     { src: "/images/editorial/combo-process.jpg", alt: "Brow tint being brushed on, editorial image" },
   ],
   /** Figma sub-labels per card. Only "The Signature Look" is in the brief; the others are design copy. */
