@@ -45,6 +45,22 @@ export function bookingReducer(state: BookingState, action: BookingAction): Book
       return action.status === "success"
         ? { ...state, paymentStatus: "success", step: "confirmation" }
         : { ...state, paymentStatus: "failed" };
+    case "HYDRATE_FROM_SERVER": {
+      const b = action.booking;
+      const confirmed = b.status === "confirmed";
+      return {
+        ...state,
+        screening: [],
+        screeningPassed: true,
+        serviceId: b.serviceId,
+        date: b.date,
+        slot: b.time,
+        customer: { ...state.customer, ...b.customer },
+        reference: b.reference,
+        paymentStatus: confirmed ? "success" : "pending",
+        step: confirmed ? "confirmation" : "deposit",
+      };
+    }
     case "GO_TO": {
       // Guard: never allow skipping forward past the screening gate.
       if (action.step !== "screening" && requiresConsultation(state.screening)) return { ...state, step: "consultation_required" };

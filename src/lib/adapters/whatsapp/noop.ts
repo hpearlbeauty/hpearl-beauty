@@ -1,4 +1,4 @@
-import type { MessageScheduler, WhatsAppProvider } from "./types";
+import type { WhatsAppProvider } from "./types";
 
 /** Development fallback: logs instead of sending. */
 export const noopWhatsApp: WhatsAppProvider = {
@@ -7,12 +7,8 @@ export const noopWhatsApp: WhatsAppProvider = {
     console.info(`[whatsapp:noop] → ${to}\n${body}`);
     return { provider: "none", messageId: null, status: "skipped" };
   },
-};
-
-export const noopScheduler: MessageScheduler = {
-  async schedule(msg) {
-    console.info(`[scheduler:noop] ${msg.kind} for ${msg.to} at ${msg.sendAt}`);
-    return { jobId: `noop_${msg.id}` };
+  async sendTemplate(to, m) {
+    console.info(`[whatsapp:noop] template=${m.template ?? "(none)"} → ${to}\n${m.fallbackText}`);
+    return { provider: "none", messageId: null, status: "skipped" };
   },
-  async cancel() {},
 };

@@ -7,29 +7,22 @@ export interface SendResult {
   error?: string;
 }
 
-/** Outbound WhatsApp contract. Credentials come from env only (WHATSAPP_*). */
+/**
+ * Business-initiated messages outside a 24h conversation window must use an
+ * approved template. `template` is the registered name; `bodyParams` fill its
+ * {{n}} placeholders in order. `fallbackText` is used when no template is configured
+ * (sandbox / inside an open window).
+ */
+export interface TemplateMessage {
+  template: string | null;
+  language?: string;
+  bodyParams: string[];
+  fallbackText: string;
+}
+
 export interface WhatsAppProvider {
   id: WhatsAppProviderId;
   /** `to` in international format without "+", e.g. 2348012345678 */
   sendText(to: string, body: string): Promise<SendResult>;
-}
-
-export interface ScheduledMessage {
-  id: string;
-  to: string;
-  body: string;
-  /** ISO timestamp when it should be sent. */
-  sendAt: string;
-  kind: "touch_up_reminder";
-  bookingReference: string;
-}
-
-/**
- * Delayed-send contract for the 28-day touch-up reminder. The real implementation
- * belongs in the backend (cron, queue, or provider-side scheduling); the app only
- * produces the job descriptor.
- */
-export interface MessageScheduler {
-  schedule(msg: ScheduledMessage): Promise<{ jobId: string }>;
-  cancel(jobId: string): Promise<void>;
+  sendTemplate(to: string, message: TemplateMessage): Promise<SendResult>;
 }

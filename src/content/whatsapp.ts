@@ -39,3 +39,37 @@ export function touchUpReminderMessage(v: { clientName: string; bookingUrl: stri
 }
 
 export const TOUCH_UP_REMINDER_DAYS = 28;
+
+/* ---- Operational messages (added for automation; client-facing ones flagged for owner approval) ---- */
+
+/** Client, 24h before the session. NEW COPY: approve before launch. Uses only the confirmed prep instruction. */
+export function appointmentReminderMessage(v: { clientName: string; serviceName: string; timeLabel: string }): string {
+  return [
+    `Hi *${v.clientName}*, a reminder that your *${v.serviceName}* session at hpearl_beauty is tomorrow at *${v.timeLabel}*.`,
+    ``,
+    `📍 ${studio.address}`,
+    ``,
+    `💡 ${prepInstructions}`,
+  ].join("\n");
+}
+
+/** Client, when a deposit was started but not completed. NEW COPY: approve before launch. */
+export function depositPendingMessage(v: { clientName: string; serviceName: string; dateTimeLabel: string; resumeUrl: string }): string {
+  return [
+    `Hi *${v.clientName}*, your *${v.serviceName}* slot on *${v.dateTimeLabel}* is being held for a short time.`,
+    ``,
+    `Complete your 50% deposit to lock it in: ${v.resumeUrl}`,
+  ].join("\n");
+}
+
+/** Owner notifications (internal). */
+export const ownerMessages = {
+  newBooking: (v: { clientName: string; phone: string; serviceName: string; dateTimeLabel: string; reference: string; depositLabel: string }) =>
+    [`✅ New booking`, `${v.clientName} · ${v.phone}`, `${v.serviceName}`, `${v.dateTimeLabel}`, `Deposit: ${v.depositLabel}`, `Ref ${v.reference}`].join("\n"),
+  consultationRequest: (v: { name: string; phone: string | null; flags: string[] }) =>
+    [`⚠️ Consultation needed`, `${v.name}${v.phone ? ` · ${v.phone}` : ""}`, `Flags: ${v.flags.join("; ")}`, `They were routed to WhatsApp instead of payment.`].join("\n"),
+  depositAbandoned: (v: { clientName: string; phone: string; serviceName: string; dateTimeLabel: string; reference: string }) =>
+    [`⏳ Deposit not completed`, `${v.clientName} · ${v.phone}`, `${v.serviceName} · ${v.dateTimeLabel}`, `Ref ${v.reference}. Nudge sent to client.`].join("\n"),
+  dailyDigest: (v: { dateLabel: string; lines: string[] }) =>
+    [`📅 Today, ${v.dateLabel}`, ...(v.lines.length ? v.lines : ["No appointments."])].join("\n"),
+};

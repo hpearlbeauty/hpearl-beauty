@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { SiteHeader } from "./SiteHeader";
 import { Footer } from "./Footer";
+import { WhatsAppChat } from "./WhatsAppChat";
 
 /** Standard page chrome. `overlayHeader` for pages that open on a dark hero. */
 export function SiteShell({ children, overlayHeader = false }: { children: ReactNode; overlayHeader?: boolean }) {
@@ -14,6 +15,7 @@ export function SiteShell({ children, overlayHeader = false }: { children: React
         {children}
       </main>
       <Footer />
+      <WhatsAppChat />
     </>
   );
 }

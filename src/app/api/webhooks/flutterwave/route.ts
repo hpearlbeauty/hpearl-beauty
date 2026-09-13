@@ -3,7 +3,7 @@ import { getBookingStore } from "@/lib/adapters/bookings";
 import { getPaymentProvider } from "@/lib/adapters/payments";
 import { onBookingConfirmed } from "@/lib/booking/events";
 
-/** flutterwave webhook · signature-verified; idempotent on booking status. */
+/** flutterwave webhook: signature-verified, re-verified with the provider, idempotent on booking status. */
 export async function POST(req: Request) {
   const raw = await req.text();
   const provider = getPaymentProvider("flutterwave");
@@ -17,10 +17,10 @@ export async function POST(req: Request) {
   if (!booking || booking.status === "confirmed") return NextResponse.json({ received: true });
 
   if (status === "success") {
-    const verified = await provider.verify(reference); // never trust the webhook body alone
+    const verified = await provider.verify(reference);
     if (verified.status === "success" && verified.amountKobo >= (booking.depositKobo ?? Infinity)) {
-      await store.update(reference, { status: "confirmed", confirmedAt: new Date().toISOString() });
-      await onBookingConfirmed(booking);
+      const updated = await store.update(reference, { status: "confirmed", confirmedAt: new Date().toISOString(), paidAt: verified.paidAt ?? new Date().toISOString() });
+      await onBookingConfirmed(updated ?? booking);
     }
   } else {
     await store.update(reference, { status: "failed" });

@@ -25,13 +25,18 @@ src/app            routes + API (availability, bookings, payments, webhooks)
 src/components     layout/ ui/ home/ academy/ booking/
 src/content        all copy + business data (brief §19 shape)
 src/lib/booking    state machine, screening gate, deposit maths, confirmed-booking events
-src/lib/adapters   availability | payments (paystack, flutterwave) | whatsapp | bookings
+src/lib/adapters   availability | payments (paystack, flutterwave) | whatsapp | bookings | reminders | messages | consultations
+src/lib/notifications  owner + client WhatsApp senders (template-aware, logged)
+src/lib/db         Neon client + schema.sql (pnpm db:migrate)
 src/lib/motion     useReveal, useReducedMotion
 src/lib/seo        JSON-LD builders
 ```
 
 ## Commands
-`pnpm dev` · `pnpm build` · `pnpm typecheck` · `pnpm lint`
+`pnpm dev -p 3737` · `pnpm build` · `pnpm typecheck` · `pnpm lint` · `pnpm db:migrate`
+
+## Automation
+See `docs/whatsapp-automation.md`. Booking lifecycle events live in `src/lib/booking/events.ts`; the hourly cron is `/api/cron/reminders`.
 
 ## Booking state
 `screening -> consultation_required | datetime -> deposit -> confirmation` (see `src/lib/booking/machine.ts`). Persisted in the URL `?step=`.

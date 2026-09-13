@@ -31,19 +31,23 @@ export function DepositStep() {
     setError(null);
     setBusy(true);
     try {
-      const create = await fetch("/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ serviceId: service!.id, date: state.date, time: state.slot, customer: state.customer, screening: state.screening }),
-      });
-      const created = await create.json();
-      if (!create.ok) throw new Error(created.error ?? "Could not create booking");
-      dispatch({ type: "PAYMENT_INITIALISED", reference: created.reference });
+      let reference = state.reference;
+      if (!reference) {
+        const create = await fetch("/api/bookings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ serviceId: service!.id, date: state.date, time: state.slot, customer: state.customer, screening: state.screening }),
+        });
+        const created = await create.json();
+        if (!create.ok) throw new Error(created.error ?? "Could not create booking");
+        reference = created.reference as string;
+        dispatch({ type: "PAYMENT_INITIALISED", reference });
+      }
 
       const init = await fetch("/api/payments/initialize", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reference: created.reference }),
+        body: JSON.stringify({ reference }),
       });
       const j = await init.json();
       if (init.status === 409 && j.error === "price_tbd") { setPriceTbd(true); return; }

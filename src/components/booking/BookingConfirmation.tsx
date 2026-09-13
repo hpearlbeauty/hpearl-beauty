@@ -23,7 +23,7 @@ export function BookingConfirmation() {
     if (!ref) return;
     fetch(`/api/payments/verify?ref=${encodeURIComponent(ref)}`)
       .then((r) => r.json())
-      .then((j) => setWaStatus(j.whatsapp ?? (j.status === "success" ? "sent" : "pending")))
+      .then((j) => setWaStatus(j.whatsapp === "sent" ? "sent" : j.whatsapp === "failed" ? "failed" : j.whatsapp === "skipped" ? "skipped" : "pending"))
       .catch(() => setWaStatus("pending"));
   }, [params, state.reference]);
 
@@ -73,7 +73,7 @@ export function BookingConfirmation() {
             <div>
               <dt className="t-small font-semibold text-clay">WhatsApp confirmation</dt>
               <dd className="t-body mt-1.5 text-ink" aria-live="polite">
-                {waStatus === "sent" ? "Sent to your WhatsApp number." : waStatus === "failed" ? "We couldn't send the message automatically · use the button below." : "Your WhatsApp confirmation will arrive shortly."}
+                {waStatus === "sent" ? "Sent to your WhatsApp number." : waStatus === "failed" ? "We couldn't send the message automatically. Use the button below." : waStatus === "skipped" ? "Automatic messages are not switched on yet. Use the button below to save your details." : "Your WhatsApp confirmation will arrive shortly."}
               </dd>
             </div>
           </dl>

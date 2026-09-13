@@ -39,6 +39,15 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (hydrated.current) return;
     hydrated.current = true;
+    // Resume / confirmation links carry ?ref=; hydrate from the server so they work on any device.
+    const ref = params.get("ref");
+    if (ref) {
+      fetch(`/api/bookings/${encodeURIComponent(ref)}`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((b) => b && dispatch({ type: "HYDRATE_FROM_SERVER", booking: b }))
+        .catch(() => {});
+      return;
+    }
     if (process.env.NODE_ENV === "development" && params.get("preview") === "confirmation") {
       dispatch({ type: "PAYMENT_RESULT", status: "success" });
       return;
@@ -58,6 +67,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     if (current !== state.step) {
       const next = new URLSearchParams(params.toString());
       next.set("step", state.step);
+      if (state.reference) next.set("ref", state.reference);
       router.replace(`${pathname}?${next.toString()}`, { scroll: false });
     }
   }, [state, params, pathname, router]);
