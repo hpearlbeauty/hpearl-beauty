@@ -730,3 +730,13 @@ Any unknown values must remain `null`, empty, or explicitly `TBD` rather than be
 This document was prepared from the hpearl_beauty concept blueprint supplied for the website project. It intentionally preserves the confirmed copy and structure while isolating missing business facts as **TBD**.
 
 Before launch, hpearl_beauty should review and approve all pricing, testimonial content, founder claims, medical/pre-appointment wording, academy claims, policies, and contact information.
+
+
+---
+
+# Addendum (13 Sep 2026): service categories
+
+Confirmed by hpearl_beauty via the website owner: the studio offers four categories, **Eyebrow, Makeup, Lash, Body Waxing**.
+Only the Eyebrow menu (Combo Brows, Ombre Powder Brows, Microblading) is specified. Makeup, Lash and Body Waxing
+services, durations and prices are **TBD** and must not be invented; the site shows a labelled placeholder and a
+WhatsApp enquiry for these until supplied.

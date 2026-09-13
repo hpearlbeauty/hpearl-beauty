@@ -3,13 +3,13 @@ export const servicesPage = {
   eyebrow: "Services & Pricing",
   title: "Choose the finish that fits your skin and style.",
   intro:
-    "Every treatment starts with custom mapping. The difference is mainly how much visible hair-stroke detail versus soft shading you want, and what your skin type retains best.",
+    "Brows, makeup, lashes and body waxing under one roof. Every brow treatment starts with custom mapping; the difference is mainly how much visible hair-stroke detail versus soft shading you want, and what your skin type retains best.",
   cta: "Start with the safety screening",
   /** Editorial imagery (licensed stock, docs/image-credits.md). */
   heroImage: { src: "/images/editorial/close-up-eye.jpg", alt: "Editorial close-up of an eye and brow in warm directional light" },
   educationImages: [
-    { src: "/images/editorial/process-pen-mapping.jpg", alt: "Brow mapping with a measuring pen, editorial image" },
-    { src: "/images/editorial/tint-brush.jpg", alt: "Editorial image of a brow artist applying tint with a fine brush while the client smiles" },
+    { src: "/images/editorial/microblading-mapping.jpg", alt: "Hair-stroke mapping on a brow with a PMU pen, editorial image" },
+    { src: "/images/editorial/combo-process.jpg", alt: "Brow tint being brushed on, editorial image" },
   ],
   /** Figma sub-labels per card. Only "The Signature Look" is in the brief; the others are design copy. */
   cardLabels: {

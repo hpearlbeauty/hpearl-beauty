@@ -40,8 +40,10 @@ export const home = {
   },
   services: {
     eyebrow: "Signature services",
-    title: "Three finishes. One standard of precision.",
-    supporting: "Each treatment starts with custom mapping. The difference is how much hair-stroke detail versus soft shading you want, and what your skin retains best.",
+    title: "Brows, makeup, lashes and waxing. One standard of precision.",
+    supporting: "Four categories, one studio. Brow treatments start with custom mapping; the difference is how much hair-stroke detail versus soft shading you want.",
+    categoriesLabel: "Categories",
+    browsTitle: "Three brow finishes",
     viewDetails: "View Details",
   },
   founder: {
@@ -52,8 +54,8 @@ export const home = {
     approach: "Mapping first, then technique. Every finish is shaped to the client's features.",
     /** Editorial image (licensed stock); swap for studio photography when supplied. */
     image: {
-      src: "/images/editorial/process-tint.jpg",
-      alt: "A smiling client having her brows tinted with a fine brush, editorial image",
+      src: "/images/editorial/studio-artist.jpg",
+      alt: "Brow artist working on a client in profile, editorial image",
       caption: "Editorial image. Studio photography to follow.",
     },
   },
@@ -65,5 +67,5 @@ export const home = {
     lead: "Your best brows should still look like you.",
     button: "Book Your Brow Session",
   },
-  marquee: ["Combo Brows", "Ombre Powder Brows", "Microblading", "Ikeja, Lagos", "By appointment", "50% deposit locks your slot"],
+  marquee: ["Eyebrow", "Makeup", "Lash", "Body Waxing", "Ikeja, Lagos", "By appointment", "50% deposit locks your slot"],
 } as const;

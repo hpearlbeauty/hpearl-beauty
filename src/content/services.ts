@@ -4,6 +4,7 @@ import type { Service } from "./types";
 export const services: Service[] = [
   {
     id: "combo-brows",
+    category: "eyebrow",
     name: "Combo Brows",
     label: "The Signature Look",
     description:
@@ -15,14 +16,15 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "combo-brows",
     image: {
-      src: "/images/editorial/portrait-front.jpg",
-      alt: "Editorial portrait with full, softly defined brows",
+      src: "/images/editorial/combo-finish.jpg",
+      alt: "Client smiling after her brows are shaped and shaded, editorial image",
       width: 2000,
-      height: 3000,
+      height: 1333,
     },
   },
   {
     id: "ombre-powder-brows",
+    category: "eyebrow",
     name: "Ombre Powder Brows",
     description:
       "A soft, misty, makeup-like finish that starts lighter at the front of the brow and deepens toward the tail. Creates a beautiful, gradient shadow effect.",
@@ -33,14 +35,15 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "ombre-brows",
     image: {
-      src: "/images/editorial/portrait-three-quarter.jpg",
-      alt: "Editorial three-quarter portrait with a soft, shaded brow finish",
+      src: "/images/editorial/ombre-finish.jpg",
+      alt: "Soft, powder-defined brows being finished with a brow pencil, editorial image",
       width: 2000,
       height: 3000,
     },
   },
   {
     id: "microblading",
+    category: "eyebrow",
     name: "Microblading",
     description:
       "Hyper-realistic, individual hair-like strokes drawn manually into the skin to mimic natural brow hairs.",
@@ -51,8 +54,8 @@ export const services: Service[] = [
     priceNGN: null,
     galleryCategory: "microblading",
     image: {
-      src: "/images/editorial/brows-eyes.jpg",
-      alt: "Editorial close-up of a pair of full, naturally feathered brows",
+      src: "/images/editorial/microblading-mapping.jpg",
+      alt: "Hair-stroke mapping on a brow with a PMU pen, editorial image",
       width: 2000,
       height: 1333,
     },

@@ -14,6 +14,9 @@ import { JsonLd } from "@/lib/seo/JsonLdScript";
 import { formatNGN } from "@/lib/format";
 import { servicesJsonLd } from "@/lib/seo/jsonld";
 import { getSiteContent } from "@/lib/content/resolve";
+import { categories } from "@/content/categories";
+import { CategoryIndex } from "@/components/home/CategoryIndex";
+import { whatsappLink } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: { absolute: seo.services.title },
@@ -45,7 +48,12 @@ export default async function ServicesPage() {
           </div>
           <div id="hero-end" aria-hidden="true" />
 
-          <div className="mt-16 lg:mt-24">
+          <div className="mt-14 lg:mt-20">
+            <CategoryIndex counts={{ eyebrow: services.length }} />
+          </div>
+
+          <h2 id="eyebrow" className="t-label mt-20 scroll-mt-28 text-clay">Eyebrow</h2>
+          <div className="mt-2">
             {services.map((s, i) => <ServicePricingRow key={s.id} service={s} index={i} />)}
             <div className="border-t border-border pt-8">
               {touchUpNGN === null ? (
@@ -59,6 +67,20 @@ export default async function ServicesPage() {
           <FadeUp className="mt-12 pb-8">
             <Button href="/book" variant="ink" size="lg" className="w-full sm:w-auto">{servicesPage.cta}</Button>
           </FadeUp>
+
+          {categories.filter((c) => !c.bookable).map((c) => (
+            <section key={c.id} id={c.id} className="mt-12 scroll-mt-28 border-t border-border pt-10" aria-labelledby={`cat-${c.id}`}>
+              <div className="grid gap-6 lg:grid-cols-12 lg:items-start">
+                <div className="lg:col-span-5">
+                  <h2 id={`cat-${c.id}`} className="t-h2 text-ink">{c.name}</h2>
+                </div>
+                <div className="lg:col-span-6 lg:col-start-7">
+                  <Placeholder label={`${c.name} menu and pricing pending`}>Treatments, durations and prices will appear here once confirmed by hpearl_beauty. Online booking opens at the same time.</Placeholder>
+                  <Button href={whatsappLink(c.enquiryMessage)} target="_blank" rel="noopener" variant="outline" className="mt-5">Enquire about {c.name.toLowerCase()} on WhatsApp</Button>
+                </div>
+              </div>
+            </section>
+          ))}
         </div>
       </section>
 

@@ -37,7 +37,7 @@ export const academy = {
   kitItemsConcept: ["Custom mapping strings", "PMU machines", "Practice latex sheets"],
   kitItemsConfirmed: null as string[] | null,
   /** Editorial imagery (licensed stock, not hpearl client work). Swap for studio photography when supplied. */
-  heroImage: { src: "/images/academy/editorial-training.jpg", alt: "Gloved hands applying pigment during a brow procedure, editorial training image" },
+  heroImage: { src: "/images/academy/academy-training.jpg", alt: "An instructor guiding two students working on a live model, editorial training image" },
   kitImage: { src: "/images/academy/editorial-kit.jpg", alt: "Permanent-makeup tools laid out on a white surface", caption: "Editorial image. Final kit photography to follow." },
   tuitionNGN: null as number | null,
   depositNGN: null as number | null,

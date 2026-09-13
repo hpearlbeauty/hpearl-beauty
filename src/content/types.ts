@@ -4,6 +4,7 @@
 */
 export type GalleryCategory = "combo-brows" | "ombre-brows" | "microblading";
 export type ServiceId = "combo-brows" | "ombre-powder-brows" | "microblading";
+export type ServiceCategoryId = "eyebrow" | "makeup" | "lash" | "body-waxing";
 
 export interface ImageAsset {
   src: string;
@@ -14,6 +15,7 @@ export interface ImageAsset {
 
 export interface Service {
   id: ServiceId;
+  category: ServiceCategoryId;
   name: string;
   /** Optional marketing label, e.g. "The Signature Look". */
   label?: string;

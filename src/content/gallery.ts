@@ -9,36 +9,36 @@ export const galleryFilters: { id: "all" | GalleryCategory; label: string }[] = 
 
 /*
   Brief §4 / §13: no verified same-client before/after pairs have been supplied yet.
-  These are licensed editorial images (docs/image-credits.md) showing process on the
-  left and a finished brow on the right, and the caption says so. `before` stays null
-  so nothing is presented as a true "before". Verified pairs uploaded in /studio/content
+  Until then each pair uses licensed editorial frames of the SAME model, mid-treatment
+  on the left and finished on the right (docs/image-credits.md). `before` stays null so
+  nothing is presented as a true "before". Verified pairs uploaded in /studio/content
   replace these automatically.
 */
-const CAPTION = "Editorial imagery. Verified client before/after pairs will replace these once supplied by the studio.";
+const CAPTION = "Editorial imagery of the same model, mid-treatment and finished. Verified client before/after pairs will replace these once supplied by the studio.";
 
 export const transformations: TransformationPair[] = [
   {
     id: "combo-01",
     category: "combo-brows",
     before: null,
-    process: { src: "/images/editorial/process-pen-mapping.jpg", alt: "Brow mapping with a measuring pen, editorial image", width: 2000, height: 1333 },
-    after: { src: "/images/editorial/portrait-front.jpg", alt: "Editorial portrait with full, defined brows", width: 2000, height: 3000 },
+    process: { src: "/images/editorial/combo-process.jpg", alt: "Brow tint being brushed on, eyes closed, editorial image", width: 2000, height: 1333 },
+    after: { src: "/images/editorial/combo-finish.jpg", alt: "The same client smiling with finished, defined brows", width: 2000, height: 1333 },
     caption: CAPTION,
   },
   {
     id: "ombre-01",
     category: "ombre-brows",
     before: null,
-    process: { src: "/images/editorial/process-tint.jpg", alt: "Brow tint being applied with a fine brush, editorial image", width: 2000, height: 1333 },
-    after: { src: "/images/editorial/portrait-three-quarter.jpg", alt: "Editorial portrait with a soft, shaded brow finish", width: 2000, height: 3000 },
+    process: { src: "/images/editorial/ombre-process.jpg", alt: "Brow tint applied with a fine brush, editorial image", width: 2000, height: 3000 },
+    after: { src: "/images/editorial/ombre-finish.jpg", alt: "The same client with softly shaded, pencil-defined brows", width: 2000, height: 3000 },
     caption: CAPTION,
   },
   {
     id: "micro-01",
     category: "microblading",
     before: null,
-    process: { src: "/images/editorial/process-microblading.jpg", alt: "Gloved hands microblading a brow, editorial image", width: 2000, height: 3556 },
-    after: { src: "/images/editorial/portrait-half.jpg", alt: "Editorial close-up of a naturally feathered brow", width: 2000, height: 1333 },
-    caption: CAPTION,
+    process: { src: "/images/editorial/microblading-mapping.jpg", alt: "Hair-stroke mapping on a brow with a PMU pen, editorial image", width: 2000, height: 1333 },
+    after: null,
+    caption: "Editorial imagery of hair-stroke mapping. A verified microblading before/after pair will replace this once supplied by the studio.",
   },
 ];

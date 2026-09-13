@@ -9,3 +9,4 @@ export * from "./seo";
 export * from "./whatsapp";
 export * from "./home";
 export * from "./servicesPage";
+export * from "./categories";

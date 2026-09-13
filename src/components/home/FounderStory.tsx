@@ -23,7 +23,7 @@ export function FounderStory({ testimonials, bio }: { testimonials: Testimonial[
         <div className="mt-14 grid gap-12 lg:mt-20 lg:grid-cols-12 lg:gap-10">
           <FadeUp className="lg:col-span-5">
             <Parallax amount={7} className="aspect-[4/5] rounded-frame bg-cocoa">
-              <Image src={f.image.src} alt={f.image.alt} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover object-[35%_30%]" />
+              <Image src={f.image.src} alt={f.image.alt} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover object-[40%_25%]" />
             </Parallax>
             <p className="t-small mt-3 text-ivory/50">{f.image.caption}</p>
           </FadeUp>
