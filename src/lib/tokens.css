@@ -1,0 +1,59 @@
+/*
+  hpearl_beauty — visual tokens (single source of truth)
+  Values from docs/hpearl_beauty_ui_motion_handoff.md §2 and §6.
+  Consumed by Tailwind v4 via @theme in globals.css.
+*/
+:root {
+  /* Colour */
+  --color-ink: #17120f;
+  --color-espresso: #2b1912;
+  --color-cocoa: #3a241a;
+  --color-ivory: #f6f0e7;
+  --color-bone: #fbf8f4;
+  --color-sand: #e8d8c7;
+  --color-clay: #a65c43;
+  --color-champagne: #cba477;
+  --color-taupe: #8b7b70;
+  --color-border: #ded2c5;
+  --color-border-dark: rgba(246, 240, 231, 0.14);
+
+  /* Semantic */
+  --color-bg: var(--color-ivory);
+  --color-bg-elevated: var(--color-bone);
+  --color-fg: var(--color-ink);
+  --color-fg-muted: var(--color-taupe);
+  --color-accent: var(--color-clay);
+  --color-accent-soft: var(--color-champagne);
+
+  /* Radius (§2) */
+  --radius-frame: 22px;
+  --radius-card: 16px;
+  --radius-button: 10px;
+  --radius-control: 12px;
+
+  /* Easing (§6) */
+  --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-micro: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Duration (§6) */
+  --dur-micro: 160ms;
+  --dur-button: 180ms;
+  --dur-header: 250ms;
+  --dur-accordion: 320ms;
+  --dur-step: 350ms;
+  --dur-header-load: 450ms;
+  --dur-reveal: 650ms;
+  --dur-image: 900ms;
+
+  /* Layout */
+  --container: 1280px;
+  --gutter: clamp(20px, 4vw, 64px);
+  --section-y: clamp(64px, 9vw, 128px);
+  --header-h: 80px;
+  --header-h-mobile: 68px;
+
+  /* Focus (§8) */
+  --focus-ring: 2px solid var(--color-champagne);
+  --focus-offset: 2px;
+}
