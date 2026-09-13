@@ -45,7 +45,7 @@ Tables: `clients`, `bookings`, `reminders`, `messages`, `consultation_requests`.
 
 ## Cron
 
-`vercel.json` runs `GET /api/cron/reminders` hourly. Vercel sends `Authorization: Bearer $CRON_SECRET`. Run it manually:
+`vercel.json` runs `GET /api/cron/reminders` daily at 06:00 UTC (07:00 WAT), the most a Vercel Hobby plan allows; that run also sends the owner digest. `.github/workflows/reminders.yml` calls the same endpoint hourly (repo secret `CRON_SECRET`, repo variable `SITE_URL`) so reminders leave on time. Upgrading Vercel to Pro lets you switch the schedule back to `0 * * * *` and drop the workflow. Run it manually:
 
 ```
 curl -H "Authorization: Bearer $CRON_SECRET" http://localhost:3737/api/cron/reminders
