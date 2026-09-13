@@ -17,5 +17,7 @@ export const memoryBookingStore: BookingStore = {
     const cutoff = Date.now() - minutes * 60_000;
     return [...mem.values()].filter((b) => b.status === "pending_payment" && new Date(b.createdAt).getTime() < cutoff);
   },
-  async listForDate(date) { return [...mem.values()].filter((b) => b.date === date); },
+  async listForDate(date) { return [...mem.values()].filter((b) => b.date === date && b.status === "confirmed"); },
+  async listUpcoming(fromDate, limit = 50) { return [...mem.values()].filter((b) => b.status === "confirmed" && b.date >= fromDate).sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`)).slice(0, limit); },
+  async listByStatus(status, limit = 50) { return [...mem.values()].filter((b) => b.status === status).sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, limit); },
 };

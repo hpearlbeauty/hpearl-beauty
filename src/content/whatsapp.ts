@@ -43,13 +43,14 @@ export const TOUCH_UP_REMINDER_DAYS = 28;
 /* ---- Operational messages (added for automation; client-facing ones flagged for owner approval) ---- */
 
 /** Client, 24h before the session. NEW COPY: approve before launch. Uses only the confirmed prep instruction. */
-export function appointmentReminderMessage(v: { clientName: string; serviceName: string; timeLabel: string }): string {
+export function appointmentReminderMessage(v: { clientName: string; serviceName: string; timeLabel: string; manageUrl?: string }): string {
   return [
     `Hi *${v.clientName}*, a reminder that your *${v.serviceName}* session at hpearl_beauty is tomorrow at *${v.timeLabel}*.`,
     ``,
     `📍 ${studio.address}`,
     ``,
     `💡 ${prepInstructions}`,
+    ...(v.manageUrl ? [``, `Need to change anything? ${v.manageUrl}`] : []),
   ].join("\n");
 }
 

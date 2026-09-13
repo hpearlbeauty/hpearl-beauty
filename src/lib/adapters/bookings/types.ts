@@ -29,4 +29,7 @@ export interface BookingStore {
   /** Unpaid bookings created more than `minutes` ago (for hold expiry / abandoned-deposit nudges). */
   listPendingOlderThan(minutes: number): Promise<BookingRecord[]>;
   listForDate(date: string): Promise<BookingRecord[]>;
+  /** Confirmed bookings on or after `fromDate`, soonest first. */
+  listUpcoming(fromDate: string, limit?: number): Promise<BookingRecord[]>;
+  listByStatus(status: BookingStatus, limit?: number): Promise<BookingRecord[]>;
 }

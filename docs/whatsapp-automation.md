@@ -54,3 +54,23 @@ curl -H "Authorization: Bearer $CRON_SECRET" http://localhost:3737/api/cron/remi
 ## Resume & confirmation links
 
 `/book?step=deposit&ref=HPB-…` resumes an unpaid booking on any device; `/book?step=confirmation&ref=HPB-…` (the payment callback) renders the confirmation from the server record.
+
+## Availability (Google Calendar)
+
+Set `AVAILABILITY_PROVIDER=google` plus `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_CALENDAR_ID`
+(share the studio calendar with the service account, "Make changes to events"). Slots are computed from
+`STUDIO_HOURS` (placeholder default until the studio confirms hours) minus the calendar's busy periods,
+with a 24h minimum lead time and a 60-day horizon (`src/lib/adapters/availability/schedule.ts`).
+A hold creates a tentative event; payment confirms it; expiry deletes it. The mock provider uses the same engine.
+
+## Manage-my-booking
+
+`/booking/<reference>?t=<token>`: status, details, add-to-calendar, resume deposit, reschedule/cancel via WhatsApp.
+The link is returned by `GET /api/bookings/<reference>`, shown on the confirmation page, and included in the
+24h reminder. Policy text is a placeholder until confirmed (brief §17 #15–16).
+
+## Owner dashboard
+
+`/studio`, protected by `STUDIO_PASSCODE` (+ `STUDIO_SESSION_SECRET`). Shows today, upcoming, awaiting-deposit,
+consultation requests (mark contacted, open WhatsApp), touch-ups due this week, the message log, cancel
+(releases the calendar hold and reminders) and a CSV export at `/api/studio/export`.

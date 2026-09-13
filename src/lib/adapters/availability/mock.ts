@@ -1,49 +1,43 @@
+import { getService } from "@/content/services";
 import type { AvailabilityProvider, Slot } from "./types";
+import { atLagos, candidateDates, slotsForDate, type Busy } from "./schedule";
 
 /*
-  Deterministic in-memory availability so the flow can be built and tested
-  independently of the real calendar backend (studio hours are TBD · brief §17 #17).
-  Replace via AVAILABILITY_PROVIDER=api in lib/adapters/availability/index.ts.
+  Deterministic in-memory availability built on the same schedule engine as the
+  Google provider, so the UI behaves identically. Holds block later slots for the process.
 */
-const BASE_SLOTS = ["10:00", "12:30", "15:00"];
-const holds = new Map<string, { expiresAt: number }>();
+const holds = new Map<string, Busy & { expiresAt: number }>();
 
-function seeded(dateStr: string) {
-  let h = 0;
-  for (const c of dateStr) h = (h * 31 + c.charCodeAt(0)) >>> 0;
-  return h;
+function seeded(s: string) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; }
+
+/** A few pseudo-random "existing appointments" per day so the calendar looks real. */
+function fakeBusy(date: string): Busy[] {
+  const seed = seeded(date);
+  const out: Busy[] = [];
+  if (seed % 3 === 0) out.push({ start: atLagos(date, "10:00"), end: atLagos(date, "12:30") });
+  if (seed % 5 === 0) out.push({ start: atLagos(date, "14:00"), end: atLagos(date, "16:00") });
+  for (const h of holds.values()) if (h.expiresAt > Date.now()) out.push(h);
+  return out;
 }
 
 export const mockAvailability: AvailabilityProvider = {
-  async getAvailableDates(_serviceId, month) {
-    const [y, m] = month.split("-").map(Number);
-    const days = new Date(y, m, 0).getDate();
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const out: string[] = [];
-    for (let d = 1; d <= days; d++) {
-      const date = new Date(y, m - 1, d);
-      if (date <= today) continue;
-      if (date.getDay() === 0) continue; // closed Sundays in the mock only
-      const iso = `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-      if (seeded(iso) % 4 !== 0) out.push(iso);
-    }
-    return out;
+  async getAvailableDates(serviceId, month) {
+    const service = getService(serviceId);
+    if (!service) return [];
+    return candidateDates(month).filter((d) => slotsForDate(d, service.durationMinutes, fakeBusy(d)).some((s) => s.available));
   },
-  async getSlots(_serviceId, date): Promise<Slot[]> {
-    const seed = seeded(date);
-    return BASE_SLOTS.map((time, i) => ({ time, available: (seed >> i) % 3 !== 0 }));
+  async getSlots(serviceId, date): Promise<Slot[]> {
+    const service = getService(serviceId);
+    return service ? slotsForDate(date, service.durationMinutes, fakeBusy(date)) : [];
   },
-  async hold({ date, time, reference }) {
-    const holdId = `hold_${date}_${time}_${reference}`;
-    const expiresAt = Date.now() + 15 * 60 * 1000;
-    holds.set(holdId, { expiresAt });
+  async hold({ serviceId, date, time, reference }) {
+    const service = getService(serviceId);
+    const start = atLagos(date, time);
+    const holdId = `hold_${reference}`;
+    const expiresAt = Date.now() + 24 * 3600_000;
+    holds.set(holdId, { start, end: new Date(start.getTime() + (service?.durationMinutes ?? 120) * 60_000), expiresAt });
     return { holdId, expiresAt: new Date(expiresAt).toISOString() };
   },
-  async confirm({ holdId }) {
-    holds.delete(holdId);
-  },
-  async release(holdId) {
-    holds.delete(holdId);
-  },
+  async confirm({ holdId }) { const h = holds.get(holdId); if (h) h.expiresAt = Infinity; },
+  async release(holdId) { holds.delete(holdId); },
 };

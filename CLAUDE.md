@@ -21,13 +21,16 @@ Next.js 16 (App Router) · React 19 · TypeScript · Tailwind v4 (`@theme` bound
 
 ## Layout
 ```
-src/app            routes + API (availability, bookings, payments, webhooks)
+src/app            routes + API (availability, bookings, payments, webhooks, cron, consultations, studio)
+                   /booking/[reference] manage page · /studio owner dashboard (passcode)
 src/components     layout/ ui/ home/ academy/ booking/
 src/content        all copy + business data (brief §19 shape)
 src/lib/booking    state machine, screening gate, deposit maths, confirmed-booking events
 src/lib/adapters   availability | payments (paystack, flutterwave) | whatsapp | bookings | reminders | messages | consultations
 src/lib/notifications  owner + client WhatsApp senders (template-aware, logged)
 src/lib/db         Neon client + schema.sql (pnpm db:migrate)
+src/lib/google     service-account token (Calendar)
+src/lib/studio     dashboard auth (HMAC cookie)
 src/lib/motion     useReveal, useReducedMotion
 src/lib/seo        JSON-LD builders
 ```

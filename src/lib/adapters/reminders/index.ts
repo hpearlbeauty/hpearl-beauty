@@ -21,6 +21,9 @@ const memoryQueue: ReminderQueue = {
   async due(now, limit = 50) {
     return [...mem.values()].filter((r) => r.status === "pending" && new Date(r.sendAt) <= now).slice(0, limit);
   },
+  async upcoming(kind, from, to) {
+    return [...mem.values()].filter((r) => r.kind === kind && r.status === "pending" && new Date(r.sendAt) >= from && new Date(r.sendAt) <= to);
+  },
   async markSent(id) { const r = mem.get(id); if (r) r.status = "sent"; },
   async markFailed(id) { const r = mem.get(id); if (r) { r.attempts += 1; if (r.attempts >= 3) r.status = "failed"; } },
 };
@@ -48,6 +51,10 @@ const postgresQueue: ReminderQueue = {
   },
   async due(now, limit = 50) {
     const rows = await db()`select * from reminders where status = 'pending' and send_at <= ${now.toISOString()} order by send_at limit ${limit}`;
+    return (rows as Record<string, unknown>[]).map(toRow);
+  },
+  async upcoming(kind, from, to) {
+    const rows = await db()`select * from reminders where kind = ${kind} and status = 'pending' and send_at between ${from.toISOString()} and ${to.toISOString()} order by send_at`;
     return (rows as Record<string, unknown>[]).map(toRow);
   },
   async markSent(id) {

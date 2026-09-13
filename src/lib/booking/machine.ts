@@ -11,6 +11,7 @@ export const initialBookingState: BookingState = {
   customer: { name: "", phone: "", email: "" },
   reference: null,
   paymentStatus: "idle",
+  manageUrl: null,
 };
 
 /** Pure reducer · the visual flow is driven entirely by this so backends can hydrate it later. */
@@ -57,6 +58,7 @@ export function bookingReducer(state: BookingState, action: BookingAction): Book
         slot: b.time,
         customer: { ...state.customer, ...b.customer },
         reference: b.reference,
+        manageUrl: b.manageUrl ?? state.manageUrl,
         paymentStatus: confirmed ? "success" : "pending",
         step: confirmed ? "confirmation" : "deposit",
       };

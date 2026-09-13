@@ -28,6 +28,8 @@ export interface BookingState {
   reference: string | null;
   /** Set by the payment verify step. */
   paymentStatus: "idle" | "pending" | "success" | "failed";
+  /** Manage-my-booking link once known. */
+  manageUrl: string | null;
 }
 
 export type BookingAction =
@@ -40,7 +42,7 @@ export type BookingAction =
   | { type: "SET_CUSTOMER"; customer: Partial<Customer> }
   | { type: "PAYMENT_INITIALISED"; reference: string }
   | { type: "PAYMENT_RESULT"; status: "success" | "failed" }
-  | { type: "HYDRATE_FROM_SERVER"; booking: { reference: string; serviceId: ServiceId; date: string; time: string; status: string; customer: Partial<Customer> } }
+  | { type: "HYDRATE_FROM_SERVER"; booking: { reference: string; serviceId: ServiceId; date: string; time: string; status: string; customer: Partial<Customer>; manageUrl?: string } }
   | { type: "GO_TO"; step: BookingStep }
   | { type: "RESET" };
 

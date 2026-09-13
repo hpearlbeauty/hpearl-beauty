@@ -23,3 +23,23 @@ export async function saveConsultationRequest(c: ConsultationRequest): Promise<{
     returning id`;
   return { id: String(rows[0].id) };
 }
+
+export interface ConsultationRow extends ConsultationRequest {
+  id: string;
+  status: "new" | "contacted" | "closed";
+  createdAt: string;
+}
+
+export async function listConsultationRequests(limit = 50): Promise<ConsultationRow[]> {
+  if (!hasDatabase()) return mem.map((m) => ({ ...m, status: "new" as const })).slice(-limit).reverse();
+  const rows = await db()`select * from consultation_requests order by created_at desc limit ${limit}`;
+  return (rows as Record<string, unknown>[]).map((r) => ({
+    id: String(r.id), name: String(r.name), phone: (r.phone as string | null) ?? null, flags: (r.flags as string[]) ?? [],
+    source: String(r.source), status: r.status as ConsultationRow["status"], createdAt: new Date(r.created_at as string).toISOString(),
+  }));
+}
+
+export async function updateConsultationStatus(id: string, status: ConsultationRow["status"]): Promise<void> {
+  if (!hasDatabase()) return;
+  await db()`update consultation_requests set status = ${status} where id = ${id}`;
+}

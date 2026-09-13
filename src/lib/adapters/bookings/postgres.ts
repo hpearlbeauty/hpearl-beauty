@@ -66,6 +66,14 @@ export const postgresBookingStore: BookingStore = {
     const rows = await db()`select *, to_char(date, 'YYYY-MM-DD') as date_text from bookings where status = 'pending_payment' and created_at < now() - (${minutes} || ' minutes')::interval order by created_at`;
     return (rows as Row[]).map(toRecord);
   },
+  async listUpcoming(fromDate, limit = 50) {
+    const rows = await db()`select *, to_char(date, 'YYYY-MM-DD') as date_text from bookings where status = 'confirmed' and date >= ${fromDate} order by date, time limit ${limit}`;
+    return (rows as Row[]).map(toRecord);
+  },
+  async listByStatus(status, limit = 50) {
+    const rows = await db()`select *, to_char(date, 'YYYY-MM-DD') as date_text from bookings where status = ${status} order by created_at desc limit ${limit}`;
+    return (rows as Row[]).map(toRecord);
+  },
   async listForDate(date) {
     const rows = await db()`select *, to_char(date, 'YYYY-MM-DD') as date_text from bookings where date = ${date} and status = 'confirmed' order by time`;
     return (rows as Row[]).map(toRecord);

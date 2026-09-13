@@ -14,6 +14,8 @@ export interface ReminderQueue {
   schedule(bookingReference: string, kind: ReminderKind, sendAt: Date): Promise<ReminderRow>;
   cancel(bookingReference: string, kind?: ReminderKind): Promise<void>;
   due(now: Date, limit?: number): Promise<ReminderRow[]>;
+  /** Pending reminders of a kind due between two instants (dashboard "touch-ups due"). */
+  upcoming(kind: ReminderKind, from: Date, to: Date): Promise<ReminderRow[]>;
   markSent(id: string): Promise<void>;
   markFailed(id: string, error: string): Promise<void>;
 }

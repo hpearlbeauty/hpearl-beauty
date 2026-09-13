@@ -37,7 +37,7 @@ export async function GET(req: Request) {
         await notifyOwner("owner_deposit_abandoned", ownerMessages.depositAbandoned({ clientName: b.customer.name, phone: b.customer.phone, serviceName: service.name, dateTimeLabel: when, reference: b.reference }), [b.customer.name, service.name, when, b.reference], b.reference);
       } else if (r.kind === "appointment_reminder_24h") {
         if (b.status !== "confirmed") { await q.cancel(b.reference, r.kind); results.skipped++; continue; }
-        await messageClient(r.kind, b.customer.phone, appointmentReminderMessage({ clientName: b.customer.name, serviceName: service.name, timeLabel: formatTime(b.time) }), [b.customer.name, service.name, formatTime(b.time)], b.reference);
+        await messageClient(r.kind, b.customer.phone, appointmentReminderMessage({ clientName: b.customer.name, serviceName: service.name, timeLabel: formatTime(b.time), manageUrl: `${siteConfig.url}/booking/${encodeURIComponent(b.reference)}?t=${b.manageToken}` }), [b.customer.name, service.name, formatTime(b.time)], b.reference);
       } else if (r.kind === "touch_up_reminder_28d") {
         if (b.status !== "confirmed") { await q.cancel(b.reference, r.kind); results.skipped++; continue; }
         await messageClient(r.kind, b.customer.phone, touchUpReminderMessage({ clientName: b.customer.name, bookingUrl: `${siteConfig.url}/book` }), [b.customer.name, `${siteConfig.url}/book`], b.reference);

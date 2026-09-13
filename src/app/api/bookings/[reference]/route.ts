@@ -13,5 +13,6 @@ export async function GET(_req: Request, { params }: { params: Promise<{ referen
     time: b.time,
     status: b.status,
     customer: { name: b.customer.name, phone: b.customer.phone, email: b.customer.email },
+    manageUrl: `/booking/${encodeURIComponent(b.reference)}?t=${b.manageToken}`,
   });
 }

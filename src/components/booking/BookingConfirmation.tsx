@@ -82,6 +82,7 @@ export function BookingConfirmation() {
             <Button href={whatsappLink(message)} target="_blank" rel="noopener" variant="ink" size="lg" className="w-full">{f.whatsapp}</Button>
             <Button href={gcal} target="_blank" rel="noopener" variant="outline" size="lg">{f.calendar}</Button>
           </div>
+          {state.manageUrl && <p className="t-small mt-5 text-taupe">Need to change something later? <a className="underline underline-offset-4" href={state.manageUrl}>Manage this booking</a>.</p>}
         </div>
       </div>
     </div>
