@@ -1,6 +1,6 @@
 import { getService } from "@/content/services";
 import type { AvailabilityProvider, Slot } from "./types";
-import { atLagos, candidateDates, slotsForDate, type Busy } from "./schedule";
+import { atLagos, candidateDates, parseSchedule, slotsForDate, type Busy } from "./schedule";
 
 /*
   Deterministic in-memory availability built on the same schedule engine as the
@@ -21,14 +21,15 @@ function fakeBusy(date: string): Busy[] {
 }
 
 export const mockAvailability: AvailabilityProvider = {
-  async getAvailableDates(serviceId, month) {
+  async getAvailableDates(serviceId, month, schedule) {
     const service = getService(serviceId);
     if (!service) return [];
-    return candidateDates(month).filter((d) => slotsForDate(d, service.durationMinutes, fakeBusy(d)).some((s) => s.available));
+    const sched = parseSchedule(schedule);
+    return candidateDates(month, sched).filter((d) => slotsForDate(d, service.durationMinutes, fakeBusy(d), sched).some((s) => s.available));
   },
-  async getSlots(serviceId, date): Promise<Slot[]> {
+  async getSlots(serviceId, date, schedule): Promise<Slot[]> {
     const service = getService(serviceId);
-    return service ? slotsForDate(date, service.durationMinutes, fakeBusy(date)) : [];
+    return service ? slotsForDate(date, service.durationMinutes, fakeBusy(date), parseSchedule(schedule)) : [];
   },
   async hold({ serviceId, date, time, reference }) {
     const service = getService(serviceId);

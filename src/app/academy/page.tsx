@@ -14,6 +14,7 @@ import { AcademyCurriculum } from "@/components/academy/AcademyCurriculum";
 import { JsonLd } from "@/lib/seo/JsonLdScript";
 import { academyCourseJsonLd } from "@/lib/seo/jsonld";
 import { formatNGN } from "@/lib/format";
+import { getSiteContent } from "@/lib/content/resolve";
 
 export const metadata: Metadata = {
   title: { absolute: seo.academy.title },
@@ -25,8 +26,10 @@ export const metadata: Metadata = {
  * STRUCTURAL SHELL. Final visual treatment lands once academy-desktop.png is supplied.
  * Content architecture per brief §10; headings per brief §14.
  */
-export default function AcademyPage() {
+export default async function AcademyPage() {
   const [h1, h2, h3] = seo.academy.supportingHeadings;
+  const content = await getSiteContent();
+  const a = content.academy;
   return (
     <SiteShell>
       <JsonLd data={academyCourseJsonLd()} />
@@ -35,7 +38,7 @@ export default function AcademyPage() {
         <div className="container-editorial relative grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <p className="anim-rise t-label text-clay" style={{ "--i": 0 } as React.CSSProperties}>{academy.eyebrow}</p>
-            <TextReveal as="h1" id="academy-title" immediate delay={200} className="t-hero mt-8 text-ink">{academy.headline}</TextReveal>
+            <TextReveal as="h1" id="academy-title" immediate delay={200} className="t-hero mt-8 text-ink">{a.headline}</TextReveal>
             <p className="anim-rise t-lead mt-8 max-w-[58ch] text-taupe" style={{ "--i": 4 } as React.CSSProperties}>{academy.subcopy}</p>
             <div className="anim-rise mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6" style={{ "--i": 5 } as React.CSSProperties}>
               <Button href="#reserve" variant="ink" size="lg">{academy.cta}</Button>
@@ -52,7 +55,7 @@ export default function AcademyPage() {
 
       <section className="bg-bone section-y" aria-labelledby="academy-learn">
         <div className="container-editorial">
-          <EditorialSectionHeader index="01" eyebrow="The programme" id="academy-learn" title={h1} supporting={founder.bio ?? founder.interimCopy} />
+          <EditorialSectionHeader index="01" eyebrow="The programme" id="academy-learn" title={h1} supporting={content.founderBio ?? founder.interimCopy} />
           <div className="mt-14 grid gap-10 lg:grid-cols-12">
             <h3 className="t-h3 text-ink lg:col-span-4">{h2}</h3>
             <div className="lg:col-span-8"><AcademyCurriculum days={academy.curriculum} /></div>
@@ -71,11 +74,11 @@ export default function AcademyPage() {
               <p className="t-small mt-3 text-taupe">{academy.kitImage.caption}</p>
             </FadeUp>
             <FadeUp delay={0.1} className="lg:col-span-4 lg:col-start-9">
-              <p className="t-lead text-ink">Your student kit may include:</p>
+              <p className="t-lead text-ink">{a.kitItems ? "Your student kit includes:" : "Your student kit may include:"}</p>
               <ul className="t-body mt-5 divide-y divide-border border-y border-border text-ink">
-                {academy.kitItemsConcept.map((k) => <li key={k} className="py-3">{k}</li>)}
+                {(a.kitItems ?? academy.kitItemsConcept).map((k) => <li key={k} className="py-3">{k}</li>)}
               </ul>
-              {academy.kitItemsConfirmed === null && <Placeholder label="Final kit contents pending" className="mt-6">Confirmed list to be supplied by hpearl_beauty.</Placeholder>}
+              {a.kitItems === null && <Placeholder label="Final kit contents pending" className="mt-6">Confirmed list to be supplied by hpearl_beauty.</Placeholder>}
             </FadeUp>
           </div>
         </div>
@@ -85,10 +88,10 @@ export default function AcademyPage() {
         <div className="container-editorial">
           <EditorialSectionHeader tone="dark" index="03" eyebrow="Reserve" id="academy-reserve" title={academy.cta} />
           <dl className="t-body mt-10 grid gap-2 border-y border-border-dark py-6 text-ivory/80 sm:grid-cols-2">
-            <div><dt className="t-label text-champagne">Full tuition</dt><dd className="mt-2 font-display text-3xl">{formatNGN(academy.tuitionNGN, { tbdLabel: "TBD" })}</dd></div>
-            <div><dt className="t-label text-champagne">Required deposit</dt><dd className="mt-2 font-display text-3xl">{formatNGN(academy.depositNGN, { tbdLabel: "TBD" })}</dd></div>
+            <div><dt className="t-label text-champagne">Full tuition</dt><dd className="mt-2 font-display text-3xl">{formatNGN(a.tuitionNGN, { tbdLabel: "TBD" })}</dd></div>
+            <div><dt className="t-label text-champagne">Required deposit</dt><dd className="mt-2 font-display text-3xl">{formatNGN(a.depositNGN, { tbdLabel: "TBD" })}</dd></div>
           </dl>
-          <Placeholder tone="dark" label="Academy pricing and seat reservation pending" className="mt-6 max-w-[60ch]">Seat reservation opens once tuition and deposit are confirmed.</Placeholder>
+          {(a.tuitionNGN === null || a.depositNGN === null) && <Placeholder tone="dark" label="Academy pricing and seat reservation pending" className="mt-6 max-w-[60ch]">Seat reservation opens once tuition and deposit are confirmed.</Placeholder>}
         </div>
       </section>
     </SiteShell>

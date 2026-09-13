@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getAvailabilityProvider } from "@/lib/adapters/availability";
 import { getService } from "@/content/services";
 import type { ServiceId } from "@/content/types";
+import { getScheduleString } from "@/lib/content/resolve";
 
 /** GET /api/availability?service=combo-brows&month=2026-10  |  &date=2026-10-14 */
 export async function GET(req: Request) {
@@ -12,8 +13,9 @@ export async function GET(req: Request) {
 
   if (!serviceId || !getService(serviceId)) return NextResponse.json({ error: "Unknown service" }, { status: 400 });
   const provider = getAvailabilityProvider();
+  const schedule = await getScheduleString();
 
-  if (date) return NextResponse.json({ date, slots: await provider.getSlots(serviceId, date) });
-  if (month) return NextResponse.json({ month, dates: await provider.getAvailableDates(serviceId, month) });
+  if (date) return NextResponse.json({ date, slots: await provider.getSlots(serviceId, date, schedule) });
+  if (month) return NextResponse.json({ month, dates: await provider.getAvailableDates(serviceId, month, schedule) });
   return NextResponse.json({ error: "Provide month or date" }, { status: 400 });
 }

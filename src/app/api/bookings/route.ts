@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { randomBytes } from "node:crypto";
-import { getService } from "@/content/services";
+import { getSiteContent } from "@/lib/content/resolve";
 import { screeningQuestions } from "@/content/booking";
 import { requiresConsultation } from "@/lib/booking/screening";
 import { computeDeposit, toKobo } from "@/lib/booking/pricing";
@@ -24,7 +24,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid screening payload" }, { status: 400 });
   if (requiresConsultation(screening)) return NextResponse.json({ error: "consultation_required" }, { status: 422 });
 
-  const service = getService(serviceId);
+  const { services } = await getSiteContent();
+  const service = services.find((s) => s.id === serviceId);
   if (!service) return NextResponse.json({ error: "Unknown service" }, { status: 400 });
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(date)) || !/^\d{2}:\d{2}$/.test(String(time))) return NextResponse.json({ error: "Invalid date or time" }, { status: 400 });
   const name = String(customer?.name ?? "").trim();

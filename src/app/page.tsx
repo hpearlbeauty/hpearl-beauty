@@ -11,6 +11,7 @@ import { BookingCTA } from "@/components/home/BookingCTA";
 import { Marquee } from "@/components/ui/Marquee";
 import { JsonLd } from "@/lib/seo/JsonLdScript";
 import { localBusinessJsonLd } from "@/lib/seo/jsonld";
+import { getSiteContent } from "@/lib/content/resolve";
 
 export const metadata: Metadata = {
   title: { absolute: seo.home.title },
@@ -18,15 +19,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const content = await getSiteContent();
   return (
     <SiteShell overlayHeader>
       <JsonLd data={localBusinessJsonLd()} />
       <HeroEditorial />
-      <TransformationGallery />
+      <TransformationGallery pairs={content.pairs} />
       <Marquee items={home.marquee} tone="dark" />
-      <ServicesGrid />
-      <FounderStory />
+      <ServicesGrid services={content.services} />
+      <FounderStory testimonials={content.testimonials} bio={content.founderBio} />
       <BookingCTA />
       <StickyBookBar />
     </SiteShell>

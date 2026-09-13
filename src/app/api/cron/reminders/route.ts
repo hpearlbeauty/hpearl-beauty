@@ -8,6 +8,7 @@ import { getService } from "@/content/services";
 import { formatDateLong, formatDateTimeLabel, formatTime } from "@/lib/format";
 import { expireStaleHolds, resumePaymentUrl } from "@/lib/booking/events";
 import { siteConfig } from "@/lib/config";
+import { getSiteContent } from "@/lib/content/resolve";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,7 @@ export async function GET(req: Request) {
   const q = getReminderQueue();
   const now = new Date();
   const results: Record<string, number> = { sent: 0, skipped: 0, failed: 0, expired: 0 };
+  const content = await getSiteContent();
 
   for (const r of await q.due(now, 100)) {
     const b = await store.get(r.bookingReference);
@@ -40,7 +42,11 @@ export async function GET(req: Request) {
         await messageClient(r.kind, b.customer.phone, appointmentReminderMessage({ clientName: b.customer.name, serviceName: service.name, timeLabel: formatTime(b.time), manageUrl: `${siteConfig.url}/booking/${encodeURIComponent(b.reference)}?t=${b.manageToken}` }), [b.customer.name, service.name, formatTime(b.time)], b.reference);
       } else if (r.kind === "touch_up_reminder_28d") {
         if (b.status !== "confirmed") { await q.cancel(b.reference, r.kind); results.skipped++; continue; }
-        await messageClient(r.kind, b.customer.phone, touchUpReminderMessage({ clientName: b.customer.name, bookingUrl: `${siteConfig.url}/book` }), [b.customer.name, `${siteConfig.url}/book`], b.reference);
+        await messageClient(r.kind, b.customer.phone, touchUpReminderMessage({ clientName: b.customer.name, bookingUrl: `${siteConfig.url}/book`, includeLongevityClaim: content.claims.longevityApproved }), [b.customer.name, `${siteConfig.url}/book`], b.reference);
+      } else if (r.kind === "aftercare_day1" || r.kind === "aftercare_day3" || r.kind === "aftercare_day7") {
+        const text = content.aftercare[r.kind.replace("aftercare_", "") as "day1" | "day3" | "day7"];
+        if (b.status !== "confirmed" || !content.aftercare.approved || !text) { await q.cancel(b.reference, r.kind); results.skipped++; continue; }
+        await messageClient(r.kind, b.customer.phone, `Hi *${b.customer.name}*, ${text}`, [b.customer.name, text], b.reference);
       }
       await q.markSent(r.id);
       results.sent++;

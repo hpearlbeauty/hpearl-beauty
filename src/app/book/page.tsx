@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { seo } from "@/content/seo";
 import { BookingShell } from "@/components/booking/BookingShell";
+import { getSiteContent } from "@/lib/content/resolve";
 
 export const metadata: Metadata = {
   title: seo.book.title,
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function BookPage() {
-  return <BookingShell />;
+export default async function BookPage() {
+  const { services } = await getSiteContent();
+  return <BookingShell services={services} />;
 }

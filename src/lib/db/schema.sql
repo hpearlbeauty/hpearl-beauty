@@ -34,7 +34,7 @@ create index if not exists bookings_status_created_idx on bookings(status, creat
 create table if not exists reminders (
   id uuid primary key default gen_random_uuid(),
   booking_reference text not null references bookings(reference) on delete cascade,
-  kind text not null check (kind in ('deposit_pending','appointment_reminder_24h','touch_up_reminder_28d')),
+  kind text not null check (kind in ('deposit_pending','appointment_reminder_24h','touch_up_reminder_28d','aftercare_day1','aftercare_day3','aftercare_day7')),
   send_at timestamptz not null,
   status text not null default 'pending' check (status in ('pending','sent','cancelled','failed')),
   attempts integer not null default 0,
@@ -67,4 +67,11 @@ create table if not exists consultation_requests (
   source text not null default 'screening',
   status text not null default 'new' check (status in ('new','contacted','closed')),
   created_at timestamptz not null default now()
+);
+
+-- Owner-editable content (prices, hours, policies, reviews, gallery pairs, aftercare copy). One JSON document per key.
+create table if not exists site_settings (
+  key text primary key,
+  value jsonb not null,
+  updated_at timestamptz not null default now()
 );

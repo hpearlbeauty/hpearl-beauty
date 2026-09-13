@@ -3,8 +3,10 @@ import { brand, navigation, studio } from "@/content/studio";
 import { siteConfig, whatsappLink } from "@/lib/config";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { Logo } from "@/components/ui/Logo";
+import { getSiteContent } from "@/lib/content/resolve";
 
-export function Footer() {
+export async function Footer() {
+  const { hoursDisplay, instagram } = await getSiteContent();
   return (
     <footer className="grain bg-ink text-ivory">
       <div className="container-editorial pb-10 pt-20 lg:pt-28">
@@ -32,7 +34,8 @@ export function Footer() {
               ) : (
                 <Placeholder tone="dark" label="WhatsApp number pending" />
               )}
-              {!studio.hours && <Placeholder tone="dark" label="Opening days & hours pending" />}
+              {hoursDisplay ? <p className="t-body text-ivory/80">{hoursDisplay}</p> : <Placeholder tone="dark" label="Opening days & hours pending" />}
+              {instagram && <a href={`https://instagram.com/${instagram.replace(/^@/, "")}`} target="_blank" rel="noopener" className="t-body inline-block text-ivory/80 underline-offset-[6px] hover:underline">Instagram @{instagram.replace(/^@/, "")}</a>}
             </div>
           </div>
         </div>

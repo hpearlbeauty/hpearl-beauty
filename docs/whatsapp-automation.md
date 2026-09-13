@@ -74,3 +74,16 @@ The link is returned by `GET /api/bookings/<reference>`, shown on the confirmati
 `/studio`, protected by `STUDIO_PASSCODE` (+ `STUDIO_SESSION_SECRET`). Shows today, upcoming, awaiting-deposit,
 consultation requests (mark contacted, open WhatsApp), touch-ups due this week, the message log, cancel
 (releases the calendar hold and reminders) and a CSV export at `/api/studio/export`.
+
+## Content editor (`/studio/content`)
+
+Owner-editable, stored in `site_settings` and merged over the code defaults by `src/lib/content/resolve.ts`:
+prices (drive "Price on request" and the 50% deposit), hours (display text + booking schedule), policies,
+Instagram, founder bio, the two unverified claims (off until ticked), academy kit list, verified reviews,
+verified before/after pairs (uploads to Vercel Blob with `BLOB_READ_WRITE_TOKEN`, local `public/uploads` in dev),
+and the aftercare messages. Saving calls `updateTag("site-content")`, so static pages re-render on the next request.
+
+## Aftercare drip
+
+On confirmation, `aftercare_day1/3/7` reminders are queued for 10:00 WAT. The cron sends them only when the editor's
+aftercare section is marked approved and the day's text is present; otherwise they are cancelled quietly.

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { founder, studio } from "@/content/studio";
 import { home } from "@/content/home";
-import { testimonials } from "@/content/testimonials";
 import { EditorialSectionHeader } from "@/components/ui/EditorialSectionHeader";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { FadeUp } from "@/components/motion/FadeUp";
@@ -11,7 +10,9 @@ import { Parallax } from "@/components/motion/Parallax";
  * Full-bleed espresso chapter. Portrait left, statement right, hairline spec list.
  * No unverified metrics or quotes (brief §11–12): reviews render as a labelled placeholder.
  */
-export function FounderStory() {
+import type { Testimonial } from "@/content/types";
+
+export function FounderStory({ testimonials, bio }: { testimonials: Testimonial[]; bio: string | null }) {
   const f = home.founder;
   return (
     <section className="grain relative overflow-hidden bg-espresso text-ivory section-y" aria-labelledby="founder-heading">
@@ -29,7 +30,7 @@ export function FounderStory() {
 
           <div className="lg:col-span-6 lg:col-start-7">
             <FadeUp as="p" className="font-display text-[clamp(26px,2.6vw,36px)] leading-[1.15] text-ivory">
-              {founder.bio ?? founder.interimCopy}
+              {bio ?? founder.interimCopy}
             </FadeUp>
             <FadeUp delay={0.1}>
               <dl className="t-small mt-10 divide-y divide-border-dark border-y border-border-dark">

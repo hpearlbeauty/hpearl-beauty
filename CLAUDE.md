@@ -10,6 +10,7 @@ Production website for hpearl_beauty, a semi-permanent brow studio + PMU academy
 
 ## Hard rules
 - Never invent prices, testimonials, founder credentials, policies, medical claims, or metrics. Unknowns are `null` in `src/content/*` and render as labelled TBD. Figma ₦ values are mockup-only.
+- Owner-editable values (prices, hours, policies, reviews, gallery pairs, aftercare) come from `site_settings` via `getSiteContent()` in `src/lib/content/resolve.ts`; pages must read through it rather than importing `src/content` directly for those fields.
 - Business copy comes from `src/content/*` only — never inline strings for services, address, WhatsApp scripts.
 - No secrets in client code. Payment/WhatsApp keys are read only inside `import "server-only"` modules under `src/lib/adapters/`.
 - Screening gate (`requiresConsultation`) is enforced client-side AND in `POST /api/bookings`.

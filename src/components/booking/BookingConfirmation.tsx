@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { bookingFrames } from "@/content/booking";
-import { getService } from "@/content/services";
 import { prepInstructions, studio } from "@/content/studio";
 import { bookingConfirmationMessage } from "@/content/whatsapp";
 import { formatDateLong, formatDateTimeLabel, formatTime } from "@/lib/format";
@@ -13,7 +12,7 @@ import { BookingBar } from "./BookingBar";
 
 /** Editorial success state: ink band + bone detail card (Figma). */
 export function BookingConfirmation() {
-  const { state } = useBooking();
+  const { state, services } = useBooking();
   const params = useSearchParams();
   const f = bookingFrames.confirmation;
   const [waStatus, setWaStatus] = useState<"pending" | "sent" | "skipped" | "failed">("pending");
@@ -27,7 +26,7 @@ export function BookingConfirmation() {
       .catch(() => setWaStatus("pending"));
   }, [params, state.reference]);
 
-  const service = state.serviceId ? getService(state.serviceId) : null;
+  const service = state.serviceId ? services.find((s) => s.id === state.serviceId) ?? null : null;
   if (!service || !state.date || !state.slot) return null;
 
   const message = bookingConfirmationMessage({ clientName: state.customer.name || "there", serviceName: service.name, dateTimeLabel: formatDateTimeLabel(state.date, state.slot) });

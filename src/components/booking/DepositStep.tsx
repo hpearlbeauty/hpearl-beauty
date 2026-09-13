@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { bookingFrames } from "@/content/booking";
-import { getService } from "@/content/services";
 import { studio } from "@/content/studio";
 import { canProceedFromDeposit, computeDeposit } from "@/lib/booking";
 import { formatDateLong, formatNGN, formatTime } from "@/lib/format";
@@ -12,9 +11,9 @@ import { BookingBar } from "./BookingBar";
 
 /** Step 3 · appointment summary (bone card) + secure checkout (ink card), Figma. */
 export function DepositStep() {
-  const { state, dispatch } = useBooking();
+  const { state, dispatch, services } = useBooking();
   const f = bookingFrames.deposit;
-  const service = state.serviceId ? getService(state.serviceId) : null;
+  const service = state.serviceId ? services.find((s) => s.id === state.serviceId) ?? null : null;
   const deposit = computeDeposit(service?.priceNGN ?? null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);

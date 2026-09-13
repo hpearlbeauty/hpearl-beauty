@@ -3,7 +3,7 @@ import { getGoogleAccessToken } from "@/lib/google/auth";
 import { getService } from "@/content/services";
 import { studio } from "@/content/studio";
 import type { AvailabilityProvider, Slot } from "./types";
-import { atLagos, candidateDates, slotsForDate, type Busy } from "./schedule";
+import { atLagos, candidateDates, parseSchedule, slotsForDate, type Busy } from "./schedule";
 
 const API = "https://www.googleapis.com/calendar/v3";
 const calendarId = () => process.env.GOOGLE_CALENDAR_ID ?? "primary";
@@ -28,19 +28,20 @@ async function busyBetween(start: Date, end: Date): Promise<Busy[]> {
  * for holds (event id = holdId), confirmed on payment, deleted on release.
  */
 export const googleAvailability: AvailabilityProvider = {
-  async getAvailableDates(serviceId, month) {
+  async getAvailableDates(serviceId, month, schedule) {
     const service = getService(serviceId);
     if (!service) return [];
-    const dates = candidateDates(month);
+    const sched = parseSchedule(schedule);
+    const dates = candidateDates(month, sched);
     if (dates.length === 0) return [];
     const busy = await busyBetween(atLagos(dates[0], "00:00"), atLagos(dates[dates.length - 1], "23:59"));
-    return dates.filter((d) => slotsForDate(d, service.durationMinutes, busy).some((s) => s.available));
+    return dates.filter((d) => slotsForDate(d, service.durationMinutes, busy, sched).some((s) => s.available));
   },
-  async getSlots(serviceId, date): Promise<Slot[]> {
+  async getSlots(serviceId, date, schedule): Promise<Slot[]> {
     const service = getService(serviceId);
     if (!service) return [];
     const busy = await busyBetween(atLagos(date, "00:00"), atLagos(date, "23:59"));
-    return slotsForDate(date, service.durationMinutes, busy);
+    return slotsForDate(date, service.durationMinutes, busy, parseSchedule(schedule));
   },
   async hold({ serviceId, date, time, reference }) {
     const service = getService(serviceId);

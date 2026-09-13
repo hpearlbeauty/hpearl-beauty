@@ -16,7 +16,8 @@ export default async function StudioLayout({ children }: { children: React.React
         <div className="container-editorial flex h-[68px] items-center justify-between">
           <Logo tone="dark" size="sm" href="/studio" />
           <div className="flex items-center gap-6">
-            <span className="t-label text-clay">Studio</span>
+            {authed && (<nav className="flex gap-5 t-label"><a href="/studio" className="text-ink">Bookings</a><a href="/studio/content" className="text-ink">Content</a></nav>)}
+            {!authed && <span className="t-label text-clay">Studio</span>}
             {authed && (
               <form action={logoutAction}><button type="submit" className="t-small underline underline-offset-4">Sign out</button></form>
             )}

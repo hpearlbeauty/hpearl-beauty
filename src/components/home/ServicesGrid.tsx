@@ -1,11 +1,12 @@
-import { services } from "@/content/services";
 import { home } from "@/content/home";
 import { RevealScope } from "@/components/ui/Reveal";
 import { EditorialSectionHeader } from "@/components/ui/EditorialSectionHeader";
 import { ServiceCard } from "./ServiceCard";
 
 /** Three staggered columns on bone; the middle column drops for editorial asymmetry. */
-export function ServicesGrid() {
+import type { Service } from "@/content/types";
+
+export function ServicesGrid({ services }: { services: Service[] }) {
   return (
     <RevealScope>
       <section className="bg-bone section-y" aria-labelledby="services-heading">

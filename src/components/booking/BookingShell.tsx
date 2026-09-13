@@ -27,13 +27,15 @@ const noop = () => () => {};
  * The booking state is restored from sessionStorage, so the flow mounts client-only
  * (server renders a quiet ivory shell) to avoid hydration mismatches.
  */
-export function BookingShell() {
+import type { Service } from "@/content/types";
+
+export function BookingShell({ services }: { services: Service[] }) {
   const mounted = useSyncExternalStore(noop, () => true, () => false);
   return (
     <main id="main" className="min-h-dvh bg-ivory">
       {mounted ? (
         <Suspense fallback={null}>
-          <BookingProvider>
+          <BookingProvider services={services}>
             <Steps />
           </BookingProvider>
         </Suspense>

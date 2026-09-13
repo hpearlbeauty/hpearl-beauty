@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { timingSafeEqual } from "node:crypto";
 import { getBookingStore } from "@/lib/adapters/bookings";
 import { getService } from "@/content/services";
-import { prepInstructions, studio, policies } from "@/content/studio";
+import { prepInstructions, studio } from "@/content/studio";
+import { getSiteContent } from "@/lib/content/resolve";
 import { formatDateLong, formatTime } from "@/lib/format";
 import { siteConfig, whatsappLink } from "@/lib/config";
 import { BookingBar } from "@/components/booking/BookingBar";
@@ -31,6 +32,7 @@ export default async function ManageBookingPage({ params, searchParams }: { para
   if (a.length !== c.length || !timingSafeEqual(a, c)) notFound();
   const service = getService(b.serviceId);
   if (!service) notFound();
+  const { policies } = await getSiteContent();
 
   const status = STATUS_COPY[b.status] ?? STATUS_COPY.confirmed;
   const start = new Date(`${b.date}T${b.time}:00+01:00`);
@@ -61,7 +63,9 @@ export default async function ManageBookingPage({ params, searchParams }: { para
           <Button href={waChange} target="_blank" rel="noopener" variant="outline" size="lg">Reschedule or cancel on WhatsApp</Button>
         </div>
 
-        {!policies.cancellation && (
+        {policies.cancellation ? (
+          <div className="t-small mt-8 space-y-2 text-taupe"><p><strong className="text-ink">Reschedule / cancellation:</strong> {policies.cancellation}</p>{policies.depositRefund && <p><strong className="text-ink">Deposit:</strong> {policies.depositRefund}</p>}</div>
+        ) : (
           <Placeholder label="Cancellation and deposit policy pending" className="mt-8">Reschedule and refund rules will appear here once hpearl_beauty confirms them. Until then, changes are handled on WhatsApp.</Placeholder>
         )}
         <p className="t-small mt-8 text-taupe">Questions? <a className="underline underline-offset-4" href={siteConfig.whatsappNumber ? whatsappLink(`Hello, about booking ${b.reference}`) : "/"}>Message the studio</a>.</p>

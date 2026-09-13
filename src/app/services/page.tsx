@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { seo } from "@/content/seo";
-import { services, additionalPricing } from "@/content/services";
 import { servicesPage } from "@/content/servicesPage";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { StickyBookBar } from "@/components/layout/StickyBookBar";
@@ -12,7 +11,9 @@ import { TextReveal } from "@/components/motion/TextReveal";
 import { FadeUp } from "@/components/motion/FadeUp";
 import { Parallax } from "@/components/motion/Parallax";
 import { JsonLd } from "@/lib/seo/JsonLdScript";
+import { formatNGN } from "@/lib/format";
 import { servicesJsonLd } from "@/lib/seo/jsonld";
+import { getSiteContent } from "@/lib/content/resolve";
 
 export const metadata: Metadata = {
   title: { absolute: seo.services.title },
@@ -20,7 +21,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services" },
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const { services, touchUpNGN } = await getSiteContent();
   return (
     <SiteShell>
       <JsonLd data={servicesJsonLd()} />
@@ -46,8 +48,10 @@ export default function ServicesPage() {
           <div className="mt-16 lg:mt-24">
             {services.map((s, i) => <ServicePricingRow key={s.id} service={s} index={i} />)}
             <div className="border-t border-border pt-8">
-              {additionalPricing.touchUpNGN === null && (
+              {touchUpNGN === null ? (
                 <Placeholder label="Touch-up session pricing pending" className="max-w-[560px]">Additional services are listed here once confirmed by hpearl_beauty.</Placeholder>
+              ) : (
+                <p className="t-body text-ink"><span className="text-taupe">Touch-up session</span> <span className="ml-3 font-medium">{formatNGN(touchUpNGN)}</span></p>
               )}
             </div>
           </div>

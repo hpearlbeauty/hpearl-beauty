@@ -58,6 +58,12 @@ export async function onBookingConfirmed(b: BookingRecord) {
   const touchUp = atLagos(b.date, "10:00");
   touchUp.setDate(touchUp.getDate() + TOUCH_UP_REMINDER_DAYS);
   await q.schedule(b.reference, "touch_up_reminder_28d", touchUp);
+  // Aftercare drip (day 1 / 3 / 7 at 10:00 WAT). Sent only if the owner has approved copy in the editor.
+  for (const [kind, days] of [["aftercare_day1", 1], ["aftercare_day3", 3], ["aftercare_day7", 7]] as const) {
+    const at = atLagos(b.date, "10:00");
+    at.setDate(at.getDate() + days);
+    await q.schedule(b.reference, kind, at);
+  }
 
   return { whatsapp: confirmation.status };
 }

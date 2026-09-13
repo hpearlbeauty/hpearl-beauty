@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { services } from "@/content/services";
 import { servicesPage } from "@/content/servicesPage";
 import { bookingCopy, bookingFrames } from "@/content/booking";
 import type { ServiceId } from "@/content/types";
@@ -26,7 +25,7 @@ function shiftMonth(key: string, by: number) {
 
 /** Step 2 · service selector left, available-date tiles + time chips right (Figma). */
 export function DateTimeStep() {
-  const { state, dispatch } = useBooking();
+  const { state, dispatch, services } = useBooking();
   const f = bookingFrames.datetime;
   const [month, setMonth] = useState(() => monthKey(new Date()));
   const [dir, setDir] = useState<1 | -1>(1);

@@ -1,16 +1,17 @@
 "use client";
 import { useId, useMemo, useState } from "react";
 import { home } from "@/content/home";
-import { transformations } from "@/content/gallery";
 import { EditorialSectionHeader } from "@/components/ui/EditorialSectionHeader";
 import { FadeUp } from "@/components/motion/FadeUp";
 import { GalleryFilter, type FilterId } from "./GalleryFilter";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
 
-export function TransformationGallery() {
+import type { TransformationPair } from "@/content/types";
+
+export function TransformationGallery({ pairs }: { pairs: TransformationPair[] }) {
   const [filter, setFilter] = useState<FilterId>("all");
   const panelId = useId();
-  const pair = useMemo(() => transformations.find((t) => filter === "all" || t.category === filter) ?? null, [filter]);
+  const pair = useMemo(() => pairs.find((t) => filter === "all" || t.category === filter) ?? null, [filter, pairs]);
   const c = home.transformations;
 
   return (

@@ -1,4 +1,4 @@
-export type ReminderKind = "deposit_pending" | "appointment_reminder_24h" | "touch_up_reminder_28d";
+export type ReminderKind = "deposit_pending" | "appointment_reminder_24h" | "touch_up_reminder_28d" | "aftercare_day1" | "aftercare_day3" | "aftercare_day7";
 
 export interface ReminderRow {
   id: string;

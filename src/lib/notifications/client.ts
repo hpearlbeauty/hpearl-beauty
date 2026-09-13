@@ -2,7 +2,7 @@ import "server-only";
 import { getWhatsAppProvider, templateFor } from "@/lib/adapters/whatsapp";
 import { logMessage } from "@/lib/adapters/messages";
 
-export type ClientEvent = "booking_confirmation" | "appointment_reminder_24h" | "touch_up_reminder_28d" | "deposit_pending";
+export type ClientEvent = "booking_confirmation" | "appointment_reminder_24h" | "touch_up_reminder_28d" | "deposit_pending" | "aftercare_day1" | "aftercare_day3" | "aftercare_day7";
 
 /** Sends a client-facing WhatsApp message (template if registered, else text) and logs it. */
 export async function messageClient(event: ClientEvent, to: string, text: string, bodyParams: string[] = [], bookingReference?: string | null) {

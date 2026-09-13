@@ -7,7 +7,9 @@ import { requiresConsultation } from "@/lib/booking/screening";
 const STORAGE_KEY = "hpb.booking.v1";
 const VALID: BookingStep[] = ["screening", "consultation_required", "datetime", "deposit", "confirmation"];
 
-const Ctx = createContext<{ state: BookingState; dispatch: React.Dispatch<BookingAction> } | null>(null);
+import type { Service } from "@/content/types";
+
+const Ctx = createContext<{ state: BookingState; dispatch: React.Dispatch<BookingAction>; services: Service[] } | null>(null);
 
 /** Which steps a given state is allowed to show · used to clamp URL-driven navigation. */
 function allowedStep(state: BookingState, wanted: BookingStep): BookingStep {
@@ -19,7 +21,7 @@ function allowedStep(state: BookingState, wanted: BookingStep): BookingStep {
   return "datetime";
 }
 
-export function BookingProvider({ children }: { children: ReactNode }) {
+export function BookingProvider({ children, services }: { children: ReactNode; services: Service[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -72,7 +74,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     }
   }, [state, params, pathname, router]);
 
-  return <Ctx.Provider value={{ state, dispatch }}>{children}</Ctx.Provider>;
+  return <Ctx.Provider value={{ state, dispatch, services }}>{children}</Ctx.Provider>;
 }
 
 export function useBooking() {
